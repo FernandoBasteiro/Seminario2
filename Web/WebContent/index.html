@@ -35,8 +35,8 @@
         </a>
         <div id="collapse1" class="collapse" aria-labelledby="headingDos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" onclick="loadDiv('contenedor-principal','cargarMeta.html',null)">Cargar nueva meta</a>
-            <a class="collapse-item" onclick="loadDiv('contenedor-principal','verMetas.html',null)">Ver mis metas</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','cargarMeta.html',null, 'Cargar nueva meta')">Cargar nueva meta</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','verMetas.html',null, 'Mis metas')">Ver mis metas</a>
           </div>
         </div>
       </li>
@@ -52,8 +52,9 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+          <h5 id="titulo-pagina" class="titulo-grande mt-2">Inicio</h5>
           <ul class="navbar-nav ml-auto">
-            <div class="topbar-divider d-none d-sm-block"></div>
+            <div class="topbar-divider titulo-grande"></div>
             <!-- Nav Item - Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,13 +63,9 @@
               </a>
               <!-- Dropdown - Usuario -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" onclick="loadDiv('contenedor-principal','perfil.html',null)">
+                <a class="dropdown-item" onclick="loadDiv('contenedor-principal','perfil.html',null, 'Modificar perfil')">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Perfil
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Configuración
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -82,8 +79,9 @@
         </nav>
         <!-- Fin de la barra superior -->
         <!-- Contenido de la pagina -->
+        <h5 id="titulo-pagina-chica" class="m-4 titulo-chico">Inicio</h5>
         <div class="container-fluid" id="contenedor-principal">
-          <h1 class="h3 mb-4 text-gray-800">Página principal... aca podría ir un mini tutorial sobre como usar la aplicación</h1>
+          <h1 class="h3 mb-4 text-gray-800">Página principal... </h1>
         </div>
         <!-- Fin del contenido de la pagina -->
       </div>
