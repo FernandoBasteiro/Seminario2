@@ -20,3 +20,30 @@
 		display: none !important
 	}
 }
+
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell !important;
+    min-width: 39px;
+    border-collapse: separate;
+}
+
+.glyphicon-chevron-left:before {
+  font-family:"Font Awesome 5 Brands";
+  content: "\f053";
+}
+.glyphicon-chevron-right:before {
+  font-family:"Font Awesome 5 Brands";
+  content: "\f054";
+}

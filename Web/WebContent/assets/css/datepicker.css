@@ -361,6 +361,9 @@
 .input-group.date .input-group-addon {
   cursor: pointer;
 }
+.input-group.date .dropdown-menu{
+     display: block;    
+ }
 .sr-only {
   position: absolute;
   width: 1px;

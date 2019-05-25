@@ -9,6 +9,12 @@
 		xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById(divName).innerHTML = this.responseText;
+			if (url == 'perfil.html') {
+			  $('#datetimepicker').datetimepicker({
+					locale : 'es',
+					format : 'L',
+					viewMode : 'years'
+			});}
 			document.getElementById("titulo-pagina").innerHTML  = titulo;
 			document.getElementById("titulo-pagina-chica").innerHTML  = titulo;
 			}};
