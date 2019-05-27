@@ -28,27 +28,35 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 		return false;
 	}
 
-	public void crearUsuario(UsuarioDTO usuario) throws ComunicacionException {
+	public void crearUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException {
 		AdministrarUsuarios.getInstancia().crearUsuario(usuario);
 	}
 	
-	public void modificarUsuario(UsuarioDTO usuario) throws ComunicacionException {
+	public void modificarUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException {
 		AdministrarUsuarios.getInstancia().modificarUsuario(usuario);
 	}
 	
-	public void login(UsuarioDTO usuario) throws LoggedInException {
+	public void login(UsuarioDTO usuario) throws RemoteException, LoggedInException {
 		AdministrarUsuarios.getInstancia().login(usuario);
 	}
 	
-	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException {
+	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException {
 		AdministrarMetas.getInstancia().altaMeta(usuario, meta);
 	}
 	
-	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException{
+	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException{
 		return AdministrarMetas.getInstancia().listarMetas(usuario);
 	}
 	
-	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
+	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException{
 		return AdministrarProcedimientos.getInstancia().listarProcedimiento(usuario, meta);
+	}
+	
+	public void modificarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+		AdministrarUsuarios.getInstancia().modificarPerfil(usuario);
+	}
+	
+	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+		return AdministrarUsuarios.getInstancia().listarPerfil(usuario);
 	}
 }
