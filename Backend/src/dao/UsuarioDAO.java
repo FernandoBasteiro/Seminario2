@@ -58,16 +58,21 @@ private static UsuarioDAO instancia;
 				u.setVarDispHoraria(ue.getVarDispHoraria());
 				u.setVarNivel(ue.getVarNivel());
 				u.setActivo(ue.isActivo());
+				u.setVarFechaNac(ue.getVarFechaNac());
 			}
 			else throw new ComunicacionException("El jugador solicitado no existe");
 		}
 		
 		public Usuario toNegocio(UsuarioEntity u) {
-			return new Usuario(u.getId(), u.getLogin(), u.getPwd(), u.getNombre(), u.getToken(), u.getVarUbicacion(), u.getVarDispHoraria(), u.getVarNivel(), u.isActivo());
+			Usuario usr = new Usuario(u.getId(), u.getLogin(), u.getPwd(), u.getNombre(), u.getToken(), u.getVarUbicacion(), u.getVarDispHoraria(), u.getVarNivel(), u.isActivo());
+			usr.setVarFechaNac(u.getVarFechaNac());
+			return usr;
 		}
 		
 		public UsuarioEntity toEntity(Usuario u) {
-			return new UsuarioEntity(u.getId(), u.getLogin(), u.getPwd(), u.getNombre(), u.getToken(), u.getVarUbicacion(), u.getVarDispHoraria(), u.getVarNivel(), u.isActivo());
+			UsuarioEntity ue = new UsuarioEntity(u.getId(), u.getLogin(), u.getPwd(), u.getNombre(), u.getToken(), u.getVarUbicacion(), u.getVarDispHoraria(), u.getVarNivel(), u.isActivo());
+			ue.setVarFechaNac(u.getVarFechaNac());
+			return ue;
 		}
 	
 		public UsuarioEntity getUsuaruiByLogin(String login) throws ComunicacionException {

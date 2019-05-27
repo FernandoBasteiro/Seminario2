@@ -1,5 +1,7 @@
 package negocio;
 
+import org.joda.time.LocalDate;
+
 import dao.UsuarioDAO;
 import excepciones.ComunicacionException;
 
@@ -13,7 +15,16 @@ public class Usuario {
 	private int varDispHoraria;
 	private String varNivel;
 	private boolean activo;
+	private LocalDate varFechaNac;
 	
+	public LocalDate getVarFechaNac() {
+		return varFechaNac;
+	}
+
+	public void setVarFechaNac(LocalDate localDate) {
+		this.varFechaNac = localDate;
+	}
+
 	public Usuario(int id, String login, String pwd, String nombre, String token, String varUbicacion,
 			int varDispHoraria, String varNivel, boolean activo) {
 		this.id = id;
