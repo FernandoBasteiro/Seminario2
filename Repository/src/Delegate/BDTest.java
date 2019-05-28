@@ -146,7 +146,7 @@ public class BDTest {
 			}
 		}
 		procedimientos.add(p);
-	}
+	} 
 	
 	public ArrayList<TagMetaDTO> getTagsMetas() {
 		if (tags == null) {

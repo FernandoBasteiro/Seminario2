@@ -76,7 +76,7 @@ public class Servlet extends HttpServlet {
 					ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
 					request.setAttribute("metas", metas);
 					jspPage = "verMetas.jsp";
-				}
+				} 
 			}
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";

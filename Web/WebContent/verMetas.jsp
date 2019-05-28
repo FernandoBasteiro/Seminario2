@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-</head>
+</head> 
 <body>
 		<% for (MetasDTO meta : (ArrayList<MetasDTO>) request.getAttribute("metas")) { %>
 	<!-- Dropdown Card Example -->
