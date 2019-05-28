@@ -3,6 +3,7 @@ package Servlets;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Delegate.BDTest;
+import dto.MetasDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
@@ -43,7 +45,7 @@ public class Servlet extends HttpServlet {
 					session.setAttribute("loggedUsr", usr);
 				}
 			}
-			if ("listarPerfil".equals(action)) {
+			else if ("listarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
 				if (uDTO != null) {
@@ -53,18 +55,28 @@ public class Servlet extends HttpServlet {
 				}
 
 			}
-			if ("modificarPerfil".equals(action)) {
+			else if ("modificarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
 				if (uDTO != null) {
+					uDTO = bd.listarPerfil(uDTO);
 					uDTO.setVarDispHoraria(Integer.valueOf(request.getParameter("dispHoraria")));
-					uDTO.setVarFechaNac(LocalDate.parse(request.getParameter("fechaNac"),DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+					uDTO.setVarFechaNac(LocalDate.parse(request.getParameter("fechaNac"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 					uDTO.setVarUbicacion(request.getParameter("ubicacion"));
 					bd.modificarPerfil(uDTO);
 					request.setAttribute("perfil", uDTO);
 					jspPage = "perfil.jsp";
 				}
 
+			}
+			else if ("listarMetas".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
+					request.setAttribute("metas", metas);
+					jspPage = "verMetas.jsp";
+				}
 			}
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";

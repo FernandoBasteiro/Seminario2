@@ -1,12 +1,13 @@
 package Delegate;
 
-import java.rmi.RemoteException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
+import dto.TagMetaDTO;
 import dto.UsuarioDTO;
+import enumeraciones.TipoTagsMetas;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
 
@@ -15,8 +16,11 @@ public class BDTest {
 	private UsuarioDTO usr;
 	private ArrayList<MetasDTO> metas;
 	private ArrayList<ProcedimientoDTO> procedimientos;
+	private ArrayList<TagMetaDTO> tags;
 	
 	private BDTest() {
+		metas = new ArrayList<MetasDTO>();
+		procedimientos = new ArrayList<ProcedimientoDTO>();
 		usr = new UsuarioDTO(1, "falbino", "1234", "Fabian Albino", "", "CABA", 20, "Asd?", true);
 		usr.setVarFechaNac(LocalDate.of(1987, 9, 19));
 		ArrayList<ProcedimientoDTO> ps = new ArrayList<ProcedimientoDTO>();
@@ -78,7 +82,7 @@ public class BDTest {
 	}
 	
 	public boolean isLoggedIn(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
-		if (usr.getToken()!=usuario.getToken()) {
+		if (usr.getToken()==usuario.getToken()) {
 			return true;
 		}
 		else {
@@ -92,7 +96,7 @@ public class BDTest {
 	
 	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
 		if (isLoggedIn(usuario)) {
-			return usuario;
+			return usr;
 		}
 		else {
 			throw new LoggedInException("No esta logueado");
@@ -144,4 +148,51 @@ public class BDTest {
 		procedimientos.add(p);
 	}
 	
+	public ArrayList<TagMetaDTO> getTagsMetas() {
+		if (tags == null) {
+			tags = new ArrayList<TagMetaDTO>();
+			TagMetaDTO tag;
+			tag = new TagMetaDTO("Aprender",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Perfeccionar",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Viajar",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Comprar",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Logro Personal",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Conocer",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Ejercitar",TipoTagsMetas.Accion);
+			tags.add(tag);
+			tag = new TagMetaDTO("Idioma",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Conducción",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Deporte",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Estetica",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Espiritual",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Academico",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Laboral",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Personal",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Placer",TipoTagsMetas.Sujeto);
+			tags.add(tag);
+			tag = new TagMetaDTO("Principiante",TipoTagsMetas.Nivel);
+			tags.add(tag);
+			tag = new TagMetaDTO("Básico",TipoTagsMetas.Nivel);
+			tags.add(tag);
+			tag = new TagMetaDTO("Intermedio",TipoTagsMetas.Nivel);
+			tags.add(tag);
+			tag = new TagMetaDTO("Avanzado",TipoTagsMetas.Nivel);
+			tags.add(tag);
+		}
+		return tags;
+	}
 }

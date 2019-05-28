@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="dto.UsuarioDTO"%>
 <html>
 <head>
   <meta charset="utf-8">
@@ -38,7 +41,7 @@
         <div id="collapse1" class="collapse" aria-labelledby="headingDos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" onclick="loadDiv('contenedor-principal','cargarMeta.html',null, 'Cargar nueva meta')">Cargar nueva meta</a>
-            <a class="collapse-item" onclick="loadDiv('contenedor-principal','Servlet','accion=listarMestas', 'Mis metas')">Ver mis metas</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','Servlet','action=listarMetas', 'Mis metas')">Ver mis metas</a>
           </div>
         </div>
       </li>
@@ -60,12 +63,16 @@
             <!-- Nav Item - Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Fabian Albino</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                <% 
+                UsuarioDTO usr = (UsuarioDTO) session.getAttribute("loggedUsr");
+                String nombre = usr.getLogin();
+                out.print(nombre); %></span>
                 <img class="img-profile rounded-circle" src="assets/img/falbino.png">
               </a>
               <!-- Dropdown - Usuario -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" onclick="loadDiv('contenedor-principal','Servlet','accion=listarPerfil', 'Modificar perfil')">
+                <a class="dropdown-item" onclick="loadDiv('contenedor-principal','Servlet','action=listarPerfil', 'Modificar perfil')">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Perfil
                 </a>
@@ -83,7 +90,7 @@
         <!-- Contenido de la pagina -->
         <h5 id="titulo-pagina-chica" class="m-4 titulo-chico">Inicio</h5>
         <div class="container-fluid" id="contenedor-principal">
-          <h1 class="h3 mb-4 text-gray-800">Página principal... </h1>
+          <h1 class="h3 mb-4 text-gray-800"><% if (request.getParameter("error") == null) { out.print("Página principal...");} else if (request.getParameter("error").equals("404")) { out.print("Llegaste demasiado lejos... error 404.");}   %></h1>
         </div>
         <!-- Fin del contenido de la pagina -->
       </div>

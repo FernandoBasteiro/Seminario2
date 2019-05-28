@@ -9,7 +9,7 @@
 		xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById(divName).innerHTML = this.responseText;
-			if (url == 'perfil.html') {
+			if (url == 'perfil.jsp') {
 			  $('#datetimepicker').datetimepicker({
 					locale : 'es',
 					format : 'L',
