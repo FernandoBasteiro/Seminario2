@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Delegate.BusinessDelegate;
+import Delegate.BDTest;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
@@ -26,7 +26,7 @@ public class Servlet extends HttpServlet {
 		String jspPage = "index.jsp";
 		try {
 			String action = request.getParameter("action");
-			BusinessDelegate bd = BusinessDelegate.getInstance();
+			BDTest bd = BDTest.getInstance();
 			
 			if ((action == null) || (action.length() < 1)) {
 				action = "default";
@@ -66,8 +66,6 @@ public class Servlet extends HttpServlet {
 				}
 
 			}
-			
-			
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";
 			request.setAttribute("error", e.getMessage());

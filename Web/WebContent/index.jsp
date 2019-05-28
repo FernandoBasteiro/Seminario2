@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -14,63 +11,37 @@
   
   <!-- Styles -->
   <link href="assets/css/far.min.css" rel="stylesheet">
+  <link href="assets/css/datepicker.css" rel="stylesheet" />
+  <link href="assets/css/filter-select.css" rel="stylesheet" />
   
 </head>
 <body id="page-top">
-<%
-	//TODO: if not logged in: response.sendRedirect("/Web/login.jsp"); 
-%>
   <!-- Wrapper de la pagina -->
   <div id="wrapper">
     <!-- Inicio del sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-rocket"></i>
         </div>
         <div class="sidebar-brand-text mx-3">FAR</div>
       </a>
-      <hr class="sidebar-divider my-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.jsp">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Principal</span></a>
-      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Metas
       </div>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+          <i class="fas fa-fw fa-flag-checkered"></i>
           <span>Metas</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapse1" class="collapse" aria-labelledby="headingDos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Cargar Metas</a>
-            <a class="collapse-item" href="">Modificar Metas</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','cargarMeta.html',null, 'Cargar nueva meta')">Cargar nueva meta</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','Servlet','accion=listarMestas', 'Mis metas')">Ver mis metas</a>
           </div>
         </div>
       </li>
-      <div class="sidebar-heading">
-        Experiencias
-      </div>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Experiencias</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="buttons.html">Cargar Experiencia</a>
-            <a class="collapse-item" href="cards.html">Buscar Experiencias</a>
-          </div>
-        </div>
-      </li>
-      <hr class="sidebar-divider d-none d-md-block">
-      <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
     </ul>
 	<!-- Fin del sidebar -->
 	
@@ -83,57 +54,9 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+          <h5 id="titulo-pagina" class="titulo-grande mt-2">Inicio</h5>
           <ul class="navbar-nav ml-auto">
-            <!-- Alertas -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Contador de notificaciones TODO -->
-                <span class="badge badge-danger badge-counter">1987</span> 
-              </a>
-              <!-- Dropdown - Notificaciones -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Notificaciones
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">32/13/2041</div>
-                    <span class="font-weight-bold">Tenés un mensaje nuevo</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">12/10/1492</div>
-                    Colón descubrió America!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">21/05/2019</div>
-                    ¿No deberías estar estudiando?
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas</a>
-              </div>
-            </li>
-            <!-- Fin de alertas -->
-            <div class="topbar-divider d-none d-sm-block"></div>
+            <div class="topbar-divider titulo-grande"></div>
             <!-- Nav Item - Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -142,13 +65,9 @@
               </a>
               <!-- Dropdown - Usuario -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" onclick="loadDiv('contenedor-principal','Servlet','accion=listarPerfil', 'Modificar perfil')">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Perfil
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Configuración
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -162,8 +81,9 @@
         </nav>
         <!-- Fin de la barra superior -->
         <!-- Contenido de la pagina -->
-        <div class="container-fluid">
-          <h1 class="h3 mb-4 text-gray-800">Página vacía</h1>
+        <h5 id="titulo-pagina-chica" class="m-4 titulo-chico">Inicio</h5>
+        <div class="container-fluid" id="contenedor-principal">
+          <h1 class="h3 mb-4 text-gray-800">Página principal... </h1>
         </div>
         <!-- Fin del contenido de la pagina -->
       </div>
@@ -200,7 +120,7 @@
         <div class="modal-body">Elegí "Salir" si querés cerrar tu sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-          <a class="btn btn-primary" href="usuario?action=logout">Salir</a>
+          <a class="btn btn-primary" href="login.html">Salir</a>
         </div>
       </div>
     </div>
@@ -213,9 +133,15 @@
   <!-- Core plugin JavaScript-->
   <script src="assets/jquery-easing/jquery.easing.min.js"></script>
   
-    <!-- Custom scripts for all pages-->
+  <!-- Custom scripts for all pages-->
   <script src="assets/js/far.min.js"></script>
+ 
+  <!-- Datepicker Scripts -->
+  <script src="assets/js/moment.js"></script>
+  <script src="assets/js/datepicker.js"></script>
   
+  <script src="assets/js/filter-select.js"></script>
+  <script src="assets/js/custom.js"></script>
 
 </body>
 </html>
