@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import Delegate.BDTest;
 import dto.MetasDTO;
+import dto.TagMetaDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
@@ -77,6 +78,15 @@ public class Servlet extends HttpServlet {
 					request.setAttribute("metas", metas);
 					jspPage = "verMetas.jsp";
 				} 
+			}
+			else if ("crearMeta".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
+					request.setAttribute("tags", tags);
+					jspPage = "cargarMeta.jsp";
+				}
 			}
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";
