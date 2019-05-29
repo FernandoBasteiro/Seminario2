@@ -22,6 +22,10 @@ public class ProcedimientoDTO implements Serializable{
 		this.duracion = duracion;
 	}
 	
+	public ProcedimientoDTO(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}

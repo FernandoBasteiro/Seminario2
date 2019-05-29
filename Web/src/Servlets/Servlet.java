@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import Delegate.BDTest;
 import dto.MetasDTO;
+import dto.ProcedimientoDTO;
 import dto.TagMetaDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
@@ -79,13 +82,54 @@ public class Servlet extends HttpServlet {
 					jspPage = "verMetas.jsp";
 				} 
 			}
-			else if ("crearMeta".equals(action)) {
+			else if ("cargarMeta".equals(action)) {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
 					request.setAttribute("tags", tags);
 					jspPage = "cargarMeta.jsp";
+				}
+			}
+			else if ("listarAcciones".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					MetasDTO meta = new MetasDTO();
+					meta.setDescripcion(request.getParameter("nombre"));
+					meta.setVarAccion(request.getParameter("accion"));
+					meta.setVarSujeto(request.getParameter("sujeto"));
+					meta.setVarNivel(request.getParameter("nivel"));
+					ArrayList<ProcedimientoDTO> procs = bd.listarProcedimiento(uDTO, meta);
+					request.setAttribute("meta", meta);
+					request.setAttribute("procs", procs);
+					jspPage = "cargarAcciones.jsp";
+				}
+			}
+			else if ("crearMeta".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					MetasDTO meta = new MetasDTO();
+					meta.setDescripcion(request.getParameter("nombre"));
+					String strTags = request.getParameter("tags");
+					List<String> strArrTags = Arrays.asList(strTags.split(","));
+					meta.setVarAccion(strArrTags.get(0));
+					meta.setVarSujeto(strArrTags.get(1));
+					meta.setVarNivel(strArrTags.get(2));
+					ArrayList<ProcedimientoDTO> procs = new ArrayList<ProcedimientoDTO>();
+					String strProcs = request.getParameter("procs");
+					List<String> strArrProcs = Arrays.asList(strProcs.split(","));
+					for (String i : strArrProcs) {
+						ProcedimientoDTO p = new ProcedimientoDTO(Integer.valueOf(i));
+						procs.add(p);
+					}
+					meta.setProcedimientos(procs);
+					bd.altaMeta(uDTO, meta);
+					
+					ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
+					request.setAttribute("metas", metas);
+					jspPage = "verMetas.jsp";
 				}
 			}
 		} catch (ComunicacionException e) {

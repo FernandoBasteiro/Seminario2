@@ -32,7 +32,7 @@
 		<!-- Card Body -->
 		<div class="card-body">
 			<% for (ProcedimientoDTO p : meta.getProcedimientos()) { %>
-			<a href="#" class="list-group-item list-group-item-action"><%=p.getDescripcion() %> (<%=p.getDuracion() %> horas)</a>
+			<a class="list-group-item list-group-item-action"><%=p.getDescripcion() %> (<%=p.getDuracion() %> hora<% if(p.getDuracion() != 1) out.print("s"); %>)</a>
 			<% } %>
     	</div>
 	</div>		

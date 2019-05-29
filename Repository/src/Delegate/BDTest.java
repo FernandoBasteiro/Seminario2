@@ -24,13 +24,13 @@ public class BDTest {
 		usr = new UsuarioDTO(1, "falbino", "1234", "Fabian Albino", "", "CABA", 20, "Asd?", true);
 		usr.setVarFechaNac(LocalDate.of(1987, 9, 19));
 		ArrayList<ProcedimientoDTO> ps = new ArrayList<ProcedimientoDTO>();
-		ProcedimientoDTO p = new ProcedimientoDTO(1, "Accion 1", "URL 1", 1);
+		ProcedimientoDTO p = new ProcedimientoDTO(1, "Curso de manejo para maquinas grandes", "URL 1", 1);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(2, "Accion 2", "URL 2", 1);
+		p = new ProcedimientoDTO(2, "Paseo por el campo en tractor", "URL 2", 7);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(3, "Accion 3 (ASD)", "URL 3", 1);
+		p = new ProcedimientoDTO(3, "400 horas de practica con tractor", "URL 3", 400);
 		ps.add(p);
 		procedimientos.add(p);
 		MetasDTO m = new MetasDTO("Quiero aprender a manejar tractores azules", false, "Aprender", "Manejar", "Avanzado", ps, usr.getLogin());
@@ -40,12 +40,12 @@ public class BDTest {
 		p = new ProcedimientoDTO(4, "Accion 1", "URL 1", 1);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(5, "Accion 2", "URL 2", 1);
+		p = new ProcedimientoDTO(5, "Accion 2", "URL 2", 3);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(3, "Accion 3 (ASD)", "URL 3", 1);
+		p = new ProcedimientoDTO(3, "400 horas de practica con tractor", "URL 3", 400);
 		ps.add(p);
-		p = new ProcedimientoDTO(7, "Accion 4", "URL 4", 1);
+		p = new ProcedimientoDTO(7, "Accion 4", "URL 4", 2);
 		ps.add(p);
 		procedimientos.add(p);
 		p = new ProcedimientoDTO(8, "Accion 5", "URL 5", 1);
@@ -55,13 +55,13 @@ public class BDTest {
 		metas.add(m);
 		
 		ps = new ArrayList<ProcedimientoDTO>();
-		p = new ProcedimientoDTO(9, "Accion 1", "URL 1", 1);
+		p = new ProcedimientoDTO(9, "Accion 1", "URL 1", 2);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(10, "Accion 2", "URL 2", 1);
+		p = new ProcedimientoDTO(10, "Accion 2", "URL 2", 7);
 		ps.add(p);
 		procedimientos.add(p);
-		p = new ProcedimientoDTO(11, "Accion 3", "URL 3", 1);
+		p = new ProcedimientoDTO(11, "Accion 3", "URL 3", 2);
 		ps.add(p);
 		procedimientos.add(p);
 		p = new ProcedimientoDTO(12, "Accion 4", "URL 4", 1);
@@ -117,10 +117,21 @@ public class BDTest {
 	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
 		if (isLoggedIn(usuario)) {
 			metas.add(meta);
-			for (ProcedimientoDTO p : procedimientos) cargarProc(p);
+			ArrayList<ProcedimientoDTO> procs = new ArrayList<ProcedimientoDTO>();
+			for (ProcedimientoDTO p : meta.getProcedimientos()) {
+				procs.add(this.buscarProcedimiento(p.getId()));
+			}
+			meta.setProcedimientos(procs);
 		}
 	}
 	
+	private ProcedimientoDTO buscarProcedimiento(int id) {
+		for (ProcedimientoDTO p : procedimientos) {
+			if (p.getId() == id) return p;
+		}
+		return null;
+	}
+
 	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
 		if (isLoggedIn(usuario)) {
 			return metas;

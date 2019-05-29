@@ -21,6 +21,14 @@
 	}
 }
 
+.errores {
+	color: #e74a3b
+}
+
+.desaparecer {
+	display: none !important
+}
+
 .input-group-addon {
     padding: 6px 12px;
     font-size: 14px;

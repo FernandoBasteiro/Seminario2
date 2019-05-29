@@ -14,8 +14,6 @@
   
   <!-- Styles -->
   <link href="assets/css/far.min.css" rel="stylesheet">
-  <link href="assets/css/datepicker.css" rel="stylesheet" />
-  <link href="assets/css/filter-select.css" rel="stylesheet" />
   
 </head>
 <body id="page-top">
@@ -40,7 +38,7 @@
         </a>
         <div id="collapse1" class="collapse" aria-labelledby="headingDos" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" onclick="loadDiv('contenedor-principal','cargarMeta.html',null, 'Cargar nueva meta')">Cargar nueva meta</a>
+            <a class="collapse-item" onclick="loadDiv('contenedor-principal','Servlet','action=cargarMeta', 'Cargar nueva meta')">Cargar nueva meta</a>
             <a class="collapse-item" onclick="loadDiv('contenedor-principal','Servlet','action=listarMetas', 'Mis metas')">Ver mis metas</a>
           </div>
         </div>
@@ -142,12 +140,7 @@
   
   <!-- Custom scripts for all pages-->
   <script src="assets/js/far.min.js"></script>
- 
-  <!-- Datepicker Scripts -->
-  <script src="assets/js/moment.js"></script>
-  <script src="assets/js/datepicker.js"></script>
   
-  <script src="assets/js/filter-select.js"></script>
   <script src="assets/js/custom.js"></script>
 
 </body>

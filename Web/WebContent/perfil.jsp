@@ -47,9 +47,10 @@ provincias.add("Tucumán");
 			<div class="col-md-6 mb-3" align="center">
 				<label for="fechaNacimiento">Fecha de nacimiento</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>
-
+				<h6 class="errores desaparecer" id="errorEdad">La edad debe estar entre 18 y 100 años</h6>
 				<label for="disponibilidad">Disponibilidad (Horas)</label> <input
 					type="number" class="form-control mb-3" id="disponibilidad" min=1 max=250 value=<%=usuario.getVarDispHoraria() %>>
+				<h6 class="errores desaparecer" id="errorDispo">La disponibilidad debe estar entre 1 y 250 horas.</h6>
 				<label for="ubicacion">Ubicación</label> <select class="custom-select mb-3"
 					id="ubicacion" data-live-search="true" value=<%=usuario.getVarUbicacion() %>>
 					<option value="" disabled <% if (usuario.getVarUbicacion() == null) {out.print("selected");} %>>Ubicación</option>
@@ -57,8 +58,9 @@ provincias.add("Tucumán");
 					<option value=<%=i %> <% if (usuario.getVarUbicacion().equals(provincias.get(i))) {out.print("selected");} %>><%=provincias.get(i) %></option>
 					<% } %>
 				</select>
+				<h6 class="errores desaparecer" id="errorUbi">Se debe seleccionar una ubicación de la lista.</h6>
 				<button
-				onclick="loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+$('#disponibilidad').val()+'&ubicacion='+$('#ubicacion option:selected').text(), 'Modificar perfil')"
+				onclick="cargarPerfil()"
 				class="btn btn-primary">Actualizar Perfil</button>
 			</div>
 		</div>

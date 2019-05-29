@@ -5,7 +5,7 @@
 
 
 <%@ page import="java.util.ArrayList"%>
-<% ArrayList<TagMetaDTO> metas = (ArrayList<TagMetaDTO>) request.getAttribute("metas"); %>
+<% ArrayList<TagMetaDTO> tags = (ArrayList<TagMetaDTO>) request.getAttribute("tags"); %>
 <html>
 <head>
 <meta charset="utf-8">
@@ -19,9 +19,9 @@
 			<div class="col-sm-2">
 				<select class="custom-select" id="accion">
 					<option value="" disabled selected>Acción</option>
-					<% int i = 0; for (TagMetaDTO meta : metas) { 
-					if (meta.getTipo() == TipoTagsMetas.Accion) {%>
-					<option value=<%=++i %>><%=meta.getNombre() %></option>		
+					<% int i = 0; for (TagMetaDTO t : tags) { 
+					if (t.getTipo() == TipoTagsMetas.Accion) {%>
+					<option value=<%=++i %>><%=t.getNombre() %></option>		
 					<% }
 					}
 					%>
@@ -30,9 +30,9 @@
 			<div class="col-sm-2">
 				<select class="custom-select" id="sujeto">
 					<option value="" disabled selected>Sujeto</option>
-					<% i = 0; for (TagMetaDTO meta : metas) { 
-					if (meta.getTipo() == TipoTagsMetas.Sujeto) {%>
-					<option value=<%=++i %>><%=meta.getNombre() %></option>		
+					<% i = 0; for (TagMetaDTO t : tags) { 
+					if (t.getTipo() == TipoTagsMetas.Sujeto) {%>
+					<option value=<%=++i %>><%=t.getNombre() %></option>		
 					<% }
 					}
 					%>
@@ -41,9 +41,9 @@
 			<div class="col-sm-2">
 				<select class="custom-select" id="nivel">
 					<option value="" disabled selected>Nivel</option>
-					<% i = 0; for (TagMetaDTO meta : metas) { 
-					if (meta.getTipo() == TipoTagsMetas.Nivel) {%>
-					<option value=<%=++i %>><%=meta.getNombre() %></option>		
+					<% i = 0; for (TagMetaDTO t : tags) { 
+					if (t.getTipo() == TipoTagsMetas.Nivel) {%>
+					<option value=<%=++i %>><%=t.getNombre() %></option>		
 					<% }
 					}
 					%>
@@ -51,10 +51,12 @@
 			</div>
 		</div>
 		<div class="col-auto my-1" align="center">
+			<h6 class="errores desaparecer" id="mensajeError">Todos los campos son obligatorios.</h6>
 			<button
-				onclick="loadDiv('contenedor-principal','cargarAcciones.html',null, 'Seleccionar acciones')"
+				onclick="listarAcciones()"
 				class="btn btn-primary">Cargar Meta</button>
 		</div>
 	</div>
 </body>
+
 </html>
