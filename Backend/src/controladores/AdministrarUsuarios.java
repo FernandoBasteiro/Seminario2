@@ -66,6 +66,8 @@ public class AdministrarUsuarios {
 		} else throw new ComunicacionException("El Usuario no existe");
 	}
 	
+
+	
 	public void login(UsuarioDTO usuario) throws LoggedInException {
 		Usuario u;
 		try {
@@ -84,6 +86,26 @@ public class AdministrarUsuarios {
 		}
 	}
 	
+	public void modificarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+		if (this.isLoggedIn(usuario)) {
+			this.buscarUsuario(usuario.getLogin()).setVarDispHoraria(usuario.getVarDispHoraria());
+			this.buscarUsuario(usuario.getLogin()).setVarUbicacion(usuario.getVarUbicacion());
+			java.time.LocalDate javaTime = usuario.getVarFechaNac();
+			org.joda.time.LocalDate jodaTime = new org.joda.time.LocalDate(javaTime);
+			this.buscarUsuario(usuario.getLogin()).setVarFechaNac(jodaTime);
+		}
+	}
 	
+	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+		if (this.isLoggedIn(usuario)) {
+			Usuario u = this.buscarUsuario(usuario.getLogin());
+			usuario.setVarDispHoraria(u.getVarDispHoraria());
+			usuario.setVarUbicacion(u.getVarUbicacion());
+			org.joda.time.LocalDate jodaTime = u.getVarFechaNac();
+			java.time.LocalDate javaTime = java.time.LocalDate.of(jodaTime.getYear(), jodaTime.getMonthOfYear(), jodaTime.getDayOfMonth());
+			usuario.setVarFechaNac(javaTime);
+		}
+		return usuario;
+	}
 	
 }

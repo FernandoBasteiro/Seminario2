@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class UsuarioDTO {
 	private static final long serialVersionUID = 2897638576412881813L;
@@ -13,7 +14,16 @@ public class UsuarioDTO {
 	private int varDispHoraria;
 	private String varNivel;
 	private boolean activo;
+	private LocalDate varFechaNac;
 	
+	public LocalDate getVarFechaNac() {
+		return varFechaNac;
+	}
+
+	public void setVarFechaNac(LocalDate varFechaNac) {
+		this.varFechaNac = varFechaNac;
+	}
+
 	public UsuarioDTO(int id, String login, String pwd, String nombre, String token, String varUbicacion,
 			int varDispHoraria, String varNivel, boolean activo) {
 		this.id = id;
@@ -25,6 +35,12 @@ public class UsuarioDTO {
 		this.varDispHoraria = varDispHoraria;
 		this.varNivel = varNivel;
 		this.activo = activo;
+	}
+	
+	public UsuarioDTO(String login, String pwd, String token) {
+		this.login = login;
+		this.pwd = pwd;
+		this.token = token;
 	}
 	
 	public UsuarioDTO(String login, String pwd, String nombre, String token, boolean activo) {
