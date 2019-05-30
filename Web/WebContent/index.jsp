@@ -88,7 +88,7 @@
         <!-- Contenido de la pagina -->
         <h5 id="titulo-pagina-chica" class="m-4 titulo-chico">Inicio</h5>
         <div class="container-fluid" id="contenedor-principal">
-          <h1 class="h3 mb-4 text-gray-800"><% if (request.getParameter("error") == null) { out.print("PÃ¡gina principal...");} else if (request.getParameter("error").equals("404")) { out.print("Llegaste demasiado lejos... error 404.");}   %></h1>
+          <h1 class="h3 mb-4 text-gray-800"><% if (request.getParameter("error") == null) { out.print("Página principal...");} else if (request.getParameter("error").equals("404")) { out.print("Llegaste demasiado lejos... error 404.");}   %></h1>
         </div>
         <!-- Fin del contenido de la pagina -->
       </div>
@@ -117,12 +117,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Â¿EstÃ¡s seguro?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">¿Estás seguro?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">Ã—</span>
+            <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">ElegÃ­ "Salir" si querÃ©s cerrar tu sesiÃ³n.</div>
+        <div class="modal-body">Elegí "Salir" si querés cerrar tu sesión.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
           <a class="btn btn-primary" href="login.html">Salir</a>
