@@ -8,8 +8,15 @@
 <head>
 <meta charset="utf-8">
 </head> 
-<body>
-		<% for (MetasDTO meta : (ArrayList<MetasDTO>) request.getAttribute("metas")) { %>
+<body>	<% ArrayList<MetasDTO> metas = (ArrayList<MetasDTO>) request.getAttribute("metas");
+		if (metas.size() == 0) { %>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+			<h6 class="m-0 font-weight-bold text-primary">No tenes ninguna meta pendiente</h6>
+		</div>
+	</div>
+	<% } %>
+		<% for (MetasDTO meta : metas) { %>
 	<!-- Dropdown Card Example -->
 	<div class="card shadow mb-4">
 		<!-- Card Header - Dropdown -->

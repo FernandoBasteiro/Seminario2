@@ -61,7 +61,11 @@ provincias.add("Tucumán");
 				<h6 class="errores desaparecer" id="errorUbi">Se debe seleccionar una ubicación de la lista.</h6>
 				<button
 				onclick="cargarPerfil()"
-				class="btn btn-primary">Actualizar Perfil</button>
+				class="btn btn-primary mb-3">Actualizar Perfil</button>
+				<% if (request.getAttribute("success") != null) { %>
+				<h6 class="confirmacion">El perfil se actualizo correctamente.</h6>
+				<% } %>
+				
 			</div>
 		</div>
 	</div>

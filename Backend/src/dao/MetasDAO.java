@@ -48,6 +48,7 @@ public class MetasDAO {
 			pe.setDuracion(p.getDuracion());
 			procedimientos.add(pe);
 		}
+		me.setProcedimientos(procedimientos);
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
@@ -84,8 +85,6 @@ public class MetasDAO {
 	public ArrayList<Metas> getListadoMetasByUsuario(String user) throws ComunicacionException {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
-		session.flush();
-		
 		Query q = session.createQuery("from MetasEntity where user = ?");
 		q.setParameter(0, user);
 		@SuppressWarnings("unchecked")

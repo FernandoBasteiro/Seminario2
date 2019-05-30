@@ -88,11 +88,13 @@ public class AdministrarUsuarios {
 	
 	public void modificarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
 		if (this.isLoggedIn(usuario)) {
-			this.buscarUsuario(usuario.getLogin()).setVarDispHoraria(usuario.getVarDispHoraria());
-			this.buscarUsuario(usuario.getLogin()).setVarUbicacion(usuario.getVarUbicacion());
+			Usuario u = this.buscarUsuario(usuario.getLogin());
+			u.setVarDispHoraria(usuario.getVarDispHoraria());
+			u.setVarUbicacion(usuario.getVarUbicacion());
 			java.time.LocalDate javaTime = usuario.getVarFechaNac();
-			org.joda.time.LocalDate jodaTime = new org.joda.time.LocalDate(javaTime);
-			this.buscarUsuario(usuario.getLogin()).setVarFechaNac(jodaTime);
+			org.joda.time.LocalDate jodaTime = new org.joda.time.LocalDate(javaTime.getYear(), javaTime.getMonthValue(), javaTime.getDayOfMonth());
+			u.setVarFechaNac(jodaTime);
+			u.grabar();
 		}
 	}
 	

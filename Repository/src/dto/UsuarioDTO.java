@@ -5,13 +5,13 @@ import java.time.LocalDate;
 
 public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 2897638576412881813L;
-	private int id;
+	private Integer id;
 	private String login;
 	private String pwd;
 	private String nombre;
 	private String token;
 	private String varUbicacion;
-	private int varDispHoraria;
+	private Integer varDispHoraria;
 	private String varNivel;
 	private boolean activo;
 	private LocalDate varFechaNac;

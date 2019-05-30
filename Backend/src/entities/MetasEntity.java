@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +20,7 @@ public class MetasEntity {
 	private String varAccion;
 	private String varSujeto; 
 	private String varNivel;
-	@OneToMany
+	@ManyToMany
 	private List<ProcedimientoEntity> procedimientos;
 	private String user;
 

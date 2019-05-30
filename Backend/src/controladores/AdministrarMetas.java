@@ -14,6 +14,7 @@ import negocio.Procedimiento;
 import negocio.Usuario;
 import controladores.AdministrarUsuarios;
 import dao.MetasDAO;
+import dao.ProcedimientoDAO;
 
 public class AdministrarMetas {
 	private static AdministrarMetas instancia;
@@ -29,9 +30,9 @@ public class AdministrarMetas {
 
 	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException {
 		Metas m = new Metas(meta.getId(), meta.getDescripcion(), meta.isCompleta(), meta.getVarAccion(), meta.getVarSujeto(), meta.getVarNivel());
-		ArrayList<Procedimiento> procedimientos = null;
+		ArrayList<Procedimiento> procedimientos = new ArrayList<Procedimiento>();
 		for (ProcedimientoDTO p : meta.getProcedimientos()) {
-			Procedimiento po = new Procedimiento(p.getId(), p.getDescripcion(), p.getUrl(), p.getDuracion()); //TODO En lugar de sacar la info del ProcDTO ir a buscar el Proc a la BD con el ID.
+			Procedimiento po = ProcedimientoDAO.getInstancia().buscarProcedimiento(p.getId());
 			procedimientos.add(po);
 		}
 		m.setProcedimientos(procedimientos);

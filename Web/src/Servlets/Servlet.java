@@ -69,6 +69,7 @@ public class Servlet extends HttpServlet {
 					uDTO.setVarUbicacion(request.getParameter("ubicacion"));
 					bd.modificarPerfil(uDTO);
 					request.setAttribute("perfil", uDTO);
+					request.setAttribute("success", true);
 					jspPage = "perfil.jsp";
 				}
 
