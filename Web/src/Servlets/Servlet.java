@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Delegate.BDTest;
+import Delegate.BusinessDelegate;
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
 import dto.TagMetaDTO;
@@ -32,7 +32,7 @@ public class Servlet extends HttpServlet {
 		String jspPage = "index.jsp";
 		try {
 			String action = request.getParameter("action");
-			BDTest bd = BDTest.getInstance();
+			BusinessDelegate bd = BusinessDelegate.getInstance();
 			
 			if ((action == null) || (action.length() < 1)) {
 				action = "default";

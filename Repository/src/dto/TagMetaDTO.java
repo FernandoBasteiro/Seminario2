@@ -1,8 +1,10 @@
 package dto;
 
+import java.io.Serializable;
+
 import enumeraciones.TipoTagsMetas;
 
-public class TagMetaDTO {
+public class TagMetaDTO implements Serializable {
 	private static int proxId = 1;
 	private int id;
 	private String nombre;

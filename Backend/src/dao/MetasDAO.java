@@ -1,14 +1,16 @@
 package dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import controladores.HibernateUtil;
 import entities.MetasEntity;
 import entities.ProcedimientoEntity;
-import entities.UsuarioEntity;
 import excepciones.ComunicacionException;
 import negocio.Metas;
 import negocio.Procedimiento;
@@ -74,6 +76,7 @@ public class MetasDAO {
 		for(ProcedimientoEntity pe : me.getProcedimientos()) {
 			procedimientos.add(ProcedimientoDAO.getInstancia().toNegocio(pe));
 		}
+		m.setProcedimientos(procedimientos);
 		
 		return m;
 	}
@@ -81,11 +84,13 @@ public class MetasDAO {
 	public ArrayList<Metas> getListadoMetasByUsuario(String user) throws ComunicacionException {
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
+		session.flush();
+		
+		Query q = session.createQuery("from MetasEntity where user = ?");
+		q.setParameter(0, user);
 		@SuppressWarnings("unchecked")
-		ArrayList<MetasEntity> mes = (ArrayList<MetasEntity>) session.createQuery("from MetasEntity where user = ? ")
-				.setParameter(0, user)
-				.list();
-		if (mes == null) throw new ComunicacionException("No se encontraron metas");
+		ArrayList<MetasEntity> mes = (ArrayList<MetasEntity>) q.list();
+		
 		ArrayList<Metas> ms = new ArrayList<Metas>();
 		for (MetasEntity me : mes) ms.add(MetasDAO.getInstancia().toNegocio(me));
 		return ms;

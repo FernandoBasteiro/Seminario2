@@ -3,14 +3,11 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import negocio.Procedimiento;
 
 @Entity
 @Table(name="metas")
@@ -19,10 +16,11 @@ public class MetasEntity {
 	@GeneratedValue
 	private Integer id;
 	private String descripcion;
-	private boolean completa;
+	private Boolean completa;
 	private String varAccion;
 	private String varSujeto; 
 	private String varNivel;
+	@OneToMany
 	private List<ProcedimientoEntity> procedimientos;
 	private String user;
 
@@ -31,6 +29,9 @@ public class MetasEntity {
 	}
 	public void setProcedimientos(ArrayList<ProcedimientoEntity> procedimientos) {
 		this.procedimientos = procedimientos;
+	}
+	
+	public MetasEntity() {
 	}
 	
 	public MetasEntity(String descripcion, boolean completa, String varAccion, String varSujeto, String varNivel, String user) {

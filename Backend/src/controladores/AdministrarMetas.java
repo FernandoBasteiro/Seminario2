@@ -31,7 +31,7 @@ public class AdministrarMetas {
 		Metas m = new Metas(meta.getId(), meta.getDescripcion(), meta.isCompleta(), meta.getVarAccion(), meta.getVarSujeto(), meta.getVarNivel());
 		ArrayList<Procedimiento> procedimientos = null;
 		for (ProcedimientoDTO p : meta.getProcedimientos()) {
-			Procedimiento po = new Procedimiento(p.getId(), p.getDescripcion(), p.getUrl(), p.getDuracion());
+			Procedimiento po = new Procedimiento(p.getId(), p.getDescripcion(), p.getUrl(), p.getDuracion()); //TODO En lugar de sacar la info del ProcDTO ir a buscar el Proc a la BD con el ID.
 			procedimientos.add(po);
 		}
 		m.setProcedimientos(procedimientos);

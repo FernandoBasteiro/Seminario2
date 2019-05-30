@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UsuarioDTO {
+public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 2897638576412881813L;
 	private int id;
 	private String login;
