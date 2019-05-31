@@ -52,6 +52,7 @@ function cargarPerfil() {
 	error = false;
 	if (fechaNac < minimo || fechaNac > maximo) {
 		$("#errorEdad").removeClass("desaparecer");
+		$("#confirmacion").addClass("desaparecer");
 		error = true;
 	}
 	else {
@@ -60,6 +61,7 @@ function cargarPerfil() {
 	dispo = $("#disponibilidad").val()
 	if (dispo < 1 || dispo > 250) {
 		$("#errorDispo").removeClass("desaparecer");
+		$("#confirmacion").addClass("desaparecer");
 		error = true;
 	}
 	else {
@@ -67,6 +69,7 @@ function cargarPerfil() {
 	}
 	if ($("#ubicacion option:selected").val() === "") {
 		$("#errorUbi").removeClass("desaparecer");
+		$("#confirmacion").addClass("desaparecer");
 		error = true;
 	}
 	else {

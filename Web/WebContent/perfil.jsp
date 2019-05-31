@@ -44,7 +44,7 @@ provincias.add("Tucumán");
 			<h6 class="m-0 font-weight-bold text-primary">Perfil de <%=usuario.getNombre() %></h6>
 		</div>
 		<div class="card-body" align="center">
-			<div class="col-md-12 mb-3">
+			<div class="col-md-12">
 				<label for="fechaNacimiento">Fecha de nacimiento</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>
 				<h6 class="errores desaparecer" id="errorEdad">La edad debe estar entre 18 y 100 años</h6>
@@ -61,9 +61,9 @@ provincias.add("Tucumán");
 				<h6 class="errores desaparecer" id="errorUbi">Se debe seleccionar una ubicación de la lista.</h6>
 				<button
 				onclick="cargarPerfil()"
-				class="btn btn-primary mb-3">Actualizar Perfil</button>
+				class="btn btn-primary">Actualizar Perfil</button>
 				<% if (request.getAttribute("success") != null) { %>
-				<h6 class="confirmacion">El perfil se actualizo correctamente.</h6>
+				<h6 class="confirmacion" id="confirmacion">El perfil se actualizo correctamente.</h6>
 				<% } %>
 				
 			</div>
