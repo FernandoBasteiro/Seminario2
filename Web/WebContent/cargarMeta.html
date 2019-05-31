@@ -4,34 +4,38 @@
 </head>
 <body>
 	<div class="card">
-		<div class="form-row m-1 my-2 mb-2">
-			<div class="col-sm-6">
-				<input type="text" class="form-control" id="meta" placeholder="Contanos cual es tu meta">
-			</div>
-			<div class="col-sm-2">
-				<select class="custom-select" id="accion">
-					<option value="" disabled selected>Acción</option>
-					<option value="1">Aprender</option>
-					<option value="2">Ejercitar</option>
-				</select>
-			</div>
-			<div class="col-sm-2">
-				<select class="custom-select" id="sujeto">
-					<option value="" disabled selected>Sujeto</option>
-					<option value="1">Ingles</option>
-					<option value="2">Manejar</option>
-					<option value="3">Bajar de peso</option>
-					<option value="4">Rehabilitación</option>
-				</select>
-			</div>
-			<div class="col-sm-2">
-				<select class="custom-select" id="nivel">
-					<option value="" disabled selected>Nivel</option>
-					<option value="1">Básico</option>
-					<option value="2">Avanzado</option>
-					<option value="3">Leve</option>
-					<option value="4">Imposible</option>
-				</select>
+		<div class="card-body m-1 my-2 mb-2">
+			<div class="col-md-12">
+				<input type="text" class="form-control mb-3" id="meta"
+					placeholder="Contanos cual es tu meta">
+				<div class="form-group row">
+					<label for="accion" class="col-lg-5 my-2">¿De que tipo es tu meta?</label> <select
+						class="custom-select mb-3 col-lg-7" id="accion">
+						<option value="" disabled selected>Acción</option>
+						<option value="1">Aprender</option>
+						<option value="2">Ejercitar</option>
+					</select>
+				</div>
+				<div class="form-group row">
+					<label for="sujeto" class="col-lg-5 my-2">¿A que está asociada?</label> <select
+						class="custom-select mb-3 col-lg-7" id="sujeto">
+						<option value="" disabled selected>Sujeto</option>
+						<option value="1">Ingles</option>
+						<option value="2">Manejar</option>
+						<option value="3">Bajar de peso</option>
+						<option value="4">Rehabilitación</option>
+					</select>
+				</div>
+				<div class="form-group row"">
+					<label for="nivel" class="col-lg-5 my-2">¿Como es tu relación con esta meta?</label> <select
+						class="custom-select mb-3 col-lg-7" id="nivel">
+						<option value="" disabled selected>Nivel</option>
+						<option value="1">Básico</option>
+						<option value="2">Avanzado</option>
+						<option value="3">Leve</option>
+						<option value="4">Imposible</option>
+					</select>
+				</div>
 			</div>
 		</div>
 		<div class="col-auto my-1" align="center">

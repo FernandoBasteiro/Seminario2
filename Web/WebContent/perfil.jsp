@@ -43,8 +43,8 @@ provincias.add("Tucumán");
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Perfil de <%=usuario.getNombre() %></h6>
 		</div>
-		<div class="card-body">
-			<div class="col-md-6 mb-3" align="center">
+		<div class="card-body" align="center">
+			<div class="col-md-12 mb-3">
 				<label for="fechaNacimiento">Fecha de nacimiento</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>
 				<h6 class="errores desaparecer" id="errorEdad">La edad debe estar entre 18 y 100 años</h6>
