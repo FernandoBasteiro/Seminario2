@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align=center>
-<a href="Servlet?action=login&usuario=falbino&password=1234"><img src="assets/img/login.gif"></a>
+<a href="Servlet?action=login&usuario=falbino&password=1234"><img src="assets/img/login-small.gif"></a>
 </div>
 </body>
 </html>
