@@ -50,3 +50,13 @@
     min-width: 39px;
     border-collapse: separate;
 }
+.avatar-profile {
+	background-color: #4e73df;
+	border-radius: 50% !important;
+	line-height:2rem;
+	width:2rem;
+	text-align: center;
+	font-weight: bold;
+	color: #ffffff;
+}
+

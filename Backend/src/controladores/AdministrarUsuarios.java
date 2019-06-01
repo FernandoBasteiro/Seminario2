@@ -68,7 +68,7 @@ public class AdministrarUsuarios {
 	
 
 	
-	public void login(UsuarioDTO usuario) throws LoggedInException {
+	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException {
 		Usuario u;
 		try {
 			u = this.buscarUsuario(usuario.getLogin());
@@ -78,7 +78,8 @@ public class AdministrarUsuarios {
 				LocalDateTime now = LocalDateTime.now();
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
 				System.out.println(dtf.format(now) + " - Autenticacion correcta de parte del Usuario: " + usuario.getLogin());
-				return;
+				UsuarioDTO usr = u.toDTO();
+				return usr;
 			}
 			throw new LoggedInException("No pudo autenticarse el usuario");
 		} catch (ComunicacionException e) {

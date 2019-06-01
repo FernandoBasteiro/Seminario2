@@ -33,7 +33,7 @@ provincias.add("Tucumán");
 %>
 
 
-<% UsuarioDTO usuario = (UsuarioDTO) request.getAttribute("perfil"); %>
+<% UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("loggedUsr"); %>
 <html>
 <head>
 <meta charset="utf-8">

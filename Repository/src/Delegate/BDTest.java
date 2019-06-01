@@ -90,8 +90,12 @@ public class BDTest {
 		}
 	}
 	
-	public void login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
+	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
 		usr.setToken(usuario.getToken());
+		usuario.setActivo(usr.isActivo());
+		usuario.setNombre(usr.getNombre());
+		usuario.setVarDispHoraria(usr.getVarDispHoraria());
+		return usuario;
 	}
 	
 	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {

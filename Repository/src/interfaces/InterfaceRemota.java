@@ -18,7 +18,7 @@ public interface InterfaceRemota extends Remote {
 	
 	public void modificarUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException;
 	
-	public void login(UsuarioDTO usuario) throws RemoteException, LoggedInException;
+	public UsuarioDTO login(UsuarioDTO usuario) throws RemoteException, LoggedInException;
 	
 	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException;
 	

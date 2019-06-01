@@ -61,12 +61,11 @@
             <!-- Nav Item - Usuario -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                <% 
-                UsuarioDTO usr = (UsuarioDTO) session.getAttribute("loggedUsr");
-                String nombre = usr.getLogin();
-                out.print(nombre); %></span>
-                <img class="img-profile rounded-circle" src="assets/img/falbino.png">
+              <% String nombre =  ((UsuarioDTO) session.getAttribute("loggedUsr")).getNombre(); 
+               String iniciales = "";
+               for (String n : nombre.split(" ")) { iniciales+=n.charAt(0); }  %>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=nombre %></span>
+                <span class="avatar-profile"><%=iniciales %></span>
               </a>
               <!-- Dropdown - Usuario -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

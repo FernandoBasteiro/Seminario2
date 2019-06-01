@@ -3,6 +3,7 @@ package negocio;
 import org.joda.time.LocalDate;
 
 import dao.UsuarioDAO;
+import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 
 public class Usuario {
@@ -143,6 +144,10 @@ public class Usuario {
 	
 	public void actualizar() throws ComunicacionException {
 		UsuarioDAO.getInstancia().actualizar(this);
+	}
+
+	public UsuarioDTO toDTO() {
+		return new UsuarioDTO(this.id, this.login, null, this.nombre, this.token, this.varUbicacion, this.varDispHoraria, this.varNivel, this.activo);
 	}
 	
 }

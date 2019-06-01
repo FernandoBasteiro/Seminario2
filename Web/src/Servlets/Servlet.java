@@ -45,7 +45,7 @@ public class Servlet extends HttpServlet {
 				String password = request.getParameter("password");
 				if (usuario != null && password != null) {
 					UsuarioDTO usr = new UsuarioDTO(usuario, password, sessionId);
-					bd.login(usr);
+					usr = bd.login(usr);
 					usr.setPwd(null);
 					session.setAttribute("loggedUsr", usr);
 				}
@@ -55,7 +55,7 @@ public class Servlet extends HttpServlet {
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					uDTO = bd.listarPerfil(uDTO);
-					request.setAttribute("perfil", uDTO);
+					session.setAttribute("loggedUsr", uDTO);
 					jspPage = "perfil.jsp";
 				}
 

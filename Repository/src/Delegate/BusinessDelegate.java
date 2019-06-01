@@ -67,9 +67,9 @@ public class BusinessDelegate {
 		}
 	}
 	
-	public void login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
+	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
 		try {
-			ir.login(usuario);
+			return ir.login(usuario);
 		} catch (RemoteException e) {
 			throw new ComunicacionException("Error en las comunicaciones");	
 		}
