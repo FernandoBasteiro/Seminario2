@@ -88,9 +88,18 @@ public class Servlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
 				if (uDTO != null) {
-					ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
-					request.setAttribute("tags", tags);
-					jspPage = "cargarMeta.jsp";
+					uDTO = bd.listarPerfil(uDTO);
+					if (uDTO.getVarDispHoraria() == null || uDTO.getVarFechaNac() == null || uDTO.getVarUbicacion() == null) {
+						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
+						request.setAttribute("metas", metas);
+						request.setAttribute("error", "faltaPerfil");
+						jspPage = "verMetas.jsp";
+					}
+					else {
+						ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
+						request.setAttribute("tags", tags);
+						jspPage = "cargarMeta.jsp";						
+					}
 				}
 			}
 			else if ("listarAcciones".equals(action)) {

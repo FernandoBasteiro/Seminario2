@@ -50,7 +50,6 @@
 				<div class="sidebar-brand-text mx-3">FAR</div>
 			</a>
 			<hr class="sidebar-divider">
-			<div class="sidebar-heading">Metas</div>
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapse1" aria-expanded="true"
 				aria-controls="collapse1"> <i
@@ -88,7 +87,7 @@
 							class="nav-link dropdown-toggle" href="#" id="userDropdown"
 							role="button" data-toggle="dropdown" aria-haspopup="true"
 							aria-expanded="false"> <span
-								class="mr-2 d-none d-lg-inline text-gray-600 small"><%=nombre%></span>
+								class="mr-2 d-none d-sm-inline text-gray-600 small"><%=nombre%></span>
 								<span class="avatar-profile"><%=iniciales%></span>
 						</a> <!-- Dropdown - Usuario -->
 							<div
@@ -162,7 +161,7 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button"
 						data-dismiss="modal">Cancelar</button>
-					<a class="btn btn-primary" href="login.html">Salir</a>
+					<a class="btn btn-primary" href="Servlet?action=logout">Salir</a>
 				</div>
 			</div>
 		</div>

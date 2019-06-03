@@ -111,7 +111,7 @@ public class UsuarioDTO implements Serializable {
 		this.varUbicacion = varUbicacion;
 	}
 
-	public int getVarDispHoraria() {
+	public Integer getVarDispHoraria() {
 		return varDispHoraria;
 	}
 

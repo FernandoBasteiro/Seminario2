@@ -23,7 +23,7 @@
 				<div class="form-group row">
 					<label for="accion" class="col-lg-5 my-2">¿De que tipo es
 						tu meta?</label> <select class="custom-select col-lg-7" id="accion">
-						<option value="" disabled selected>Acción</option>
+						<option value="" disabled selected></option>
 						<%
 							int i = 0;
 							for (TagMetaDTO t : tags) {
@@ -39,7 +39,7 @@
 				<div class="form-group row">
 					<label for="sujeto" class="col-lg-5 my-2">¿A que está
 						asociada?</label> <select class="custom-select col-lg-7" id="sujeto">
-						<option value="" disabled selected>Sujeto</option>
+						<option value="" disabled selected></option>
 						<%
 							i = 0;
 							for (TagMetaDTO t : tags) {
@@ -56,7 +56,7 @@
 					<label for="nivel" class="col-lg-5 my-2">¿Como es tu
 						relación con esta meta?</label> <select
 						class="custom-select col-lg-7" id="nivel">
-						<option value="" disabled selected>Nivel</option>
+						<option value="" disabled selected></option>
 						<%
 							i = 0;
 							for (TagMetaDTO t : tags) {

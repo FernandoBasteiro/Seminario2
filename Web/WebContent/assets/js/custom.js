@@ -11,7 +11,8 @@
 			document.getElementById(divName).innerHTML = this.responseText;
 			document.getElementById("titulo-pagina").innerHTML  = titulo;
 			document.getElementById("titulo-pagina-chica").innerHTML  = titulo;
-			}};
+			}
+		else if (this.readyState == 4 && this.status == 401) {window.location.href = "/Web/login.jsp";}};
 	    xmlhttp.open("POST", url, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
 	    xmlhttp.send(postInfo);
@@ -53,27 +54,33 @@ function cargarPerfil() {
 	if (fechaNac < minimo || fechaNac > maximo) {
 		$("#errorEdad").removeClass("desaparecer");
 		$("#confirmacion").addClass("desaparecer");
+		$("#fechaNacimiento").addClass("is-invalid");
 		error = true;
 	}
 	else {
+		$("#fechaNacimiento").removeClass("is-invalid");
 		$("#errorEdad").addClass("desaparecer");
 	}
 	dispo = $("#disponibilidad").val()
 	if (dispo < 1 || dispo > 250) {
 		$("#errorDispo").removeClass("desaparecer");
+		$("#disponibilidad").addClass("is-invalid");
 		$("#confirmacion").addClass("desaparecer");
 		error = true;
 	}
 	else {
+		$("#disponibilidad").removeClass("is-invalid");
 		$("#errorDispo").addClass("desaparecer");
 	}
 	if ($("#ubicacion option:selected").val() === "") {
 		$("#errorUbi").removeClass("desaparecer");
+		$("#ubicacion").addClass("is-invalid");
 		$("#confirmacion").addClass("desaparecer");
 		error = true;
 	}
 	else {
 		$("#errorUbi").addClass("desaparecer");
+		$("#ubicacion").removeClass("is-invalid");
 	}
 	if (! error) {
 		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text(), 'Modificar perfil');
