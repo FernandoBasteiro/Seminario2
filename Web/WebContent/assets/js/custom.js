@@ -37,11 +37,16 @@
 		$("#mensajeError").removeClass("desaparecer");
 	}
 	else {
-		procs=[];
-		$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
-		tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];
-		nombre=$("#desc").text();
-		loadDiv('contenedor-principal','Servlet','action=crearMeta&nombre='+nombre+'&tags='+tags+'&procs='+procs, 'Mis metas');			
+		$("#mensajeError").addClass("desaparecer");
+		if (parseInt($("#sumaHoras")) > parseInt($("#horasPerfil"))) {
+			if (confirm("La duración de los procedimientos seleccionados supera las horas de tu perfil.\n¿Querés crear la meta igualmente?")) {
+				procs=[];
+				$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
+				tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];
+				nombre=$("#desc").text();
+				loadDiv('contenedor-principal','Servlet','action=crearMeta&nombre='+nombre+'&tags='+tags+'&procs='+procs, 'Mis metas');
+			}
+		}		
 	}
 }
  
@@ -93,5 +98,21 @@ function sumarHoras(checkbox, cant) {
 		horas = horas * -1;
 	}
 	var anterior = parseInt($("#sumaHoras").val());
+	var perfil = parseInt($("#horasPerfil").val());
 	$("#sumaHoras").val(horas + anterior);
+	if ((horas+anterior) < perfil * 0.8) {
+		$("#sumaHoras").addClass("input-sumadehoras-bajo");
+		$("#sumaHoras").removeClass("input-sumadehoras-medio");
+		$("#sumaHoras").removeClass("input-sumadehoras-alto");
+	}
+	else if ((horas+anterior) <= perfil) {
+		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
+		$("#sumaHoras").addClass("input-sumadehoras-medio");
+		$("#sumaHoras").removeClass("input-sumadehoras-alto");
+	}
+	else {
+		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
+		$("#sumaHoras").removeClass("input-sumadehoras-medio");
+		$("#sumaHoras").addClass("input-sumadehoras-alto");
+	}
 }

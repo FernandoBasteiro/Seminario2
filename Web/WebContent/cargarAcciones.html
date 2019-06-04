@@ -11,163 +11,74 @@
 			<span class="badge badge-primary">Avanzado</span></h6>
 			<div class="row mr-2">
 			<h6 class="m-0 font-weight-bold text-primary my-1 mr-2">Horas totales:</h6>
-			<input type="text" disabled id="sumaHoras" style="height:25px; width:50px; text-align:right;" value=0>
+			<input type="text" disabled id="sumaHoras" class="input-sumadehoras input-sumadehoras-bajo" value=0>
+			<input type="hidden" id="horasPerfil" value=10>
 			</div>
 		</div>
 		<div class="card-body ml-2">
 			<table class="table table-hover">
 				<tr>
-					<th></th><th>Descripción</th><th>Duración</th>
+					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
 				</tr>
 				<tr>
 					<td><input type="checkbox" value="" id="1" onClick="sumarHoras(this, 4)"></td>
 					<td>Accón 1</td>
-					<td><input type="hidden" id="costo1" value=4>4 horas</td>
+					<td>4 horas</td>
+					<td>9.5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" value="" id="2" onClick="sumarHoras(this, 2)"></td>
 					<td>Accón 2</td>
 					<td><input type="hidden" id="costo2" value=2>2 horas</td>
+					<td>9</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="3" onClick="sumarHoras(this, 5)")></td>
+					<td><input type="checkbox" value="" id="3" onClick="sumarHoras(this, 5)"></td>
 					<td>Accón 3</td>
 					<td><input type="hidden" id="costo3" value=5>5 horas</td>
+					<td>9</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="4"></td>
+					<td><input type="checkbox" value="" id="4" onClick="sumarHoras(this, 1)"></td>
 					<td>Accón 4</td>
 					<td><input type="hidden" id="costo4" value=1>1 hora</td>
+					<td>8.5</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="5"></td>
+					<td><input type="checkbox" value="" id="5" onClick="sumarHoras(this, 15)"></td>
 					<td>Accón 5</td>
 					<td><input type="hidden" id="costo5" value=15>15 horas</td>
+					<td>8</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="6"></td>
+					<td><input type="checkbox" value="" id="6" onClick="sumarHoras(this, 2)"></td>
 					<td>Accón 6</td>
 					<td><input type="hidden" id="costo6" value=2>2 horas</td>
+					<td>7</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="7"></td>
+					<td><input type="checkbox" value="" id="7" onClick="sumarHoras(this, 18)"></td>
 					<td>Accón 7</td>
 					<td><input type="hidden" id="costo7" value=18>18 horas</td>
+					<td>6.5</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="8"></td>
+					<td><input type="checkbox" value="" id="8" onClick="sumarHoras(this, 1)"></td>
 					<td>Accón 8</td>
 					<td><input type="hidden" id="costo8" value=1>1 hora</td>
+					<td>6</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="9"></td>
+					<td><input type="checkbox" value="" id="9" onClick="sumarHoras(this, 3)"></td>
 					<td>Accón 9</td>
 					<td><input type="hidden" id="costo9" value=3>3 horas</td>
+					<td>5</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" value="" id="10"></td>
+					<td><input type="checkbox" value="" id="10" onClick="sumarHoras(this, 10)"></td>
 					<td>Accón 10</td>
 					<td><input type="hidden" id="costo10" value=10>10 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="11"></td>
-					<td>Accón 11</td>
-					<td><input type="hidden" id="costo11" value=4>4 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="12"></td>
-					<td>Accón 12</td>
-					<td><input type="hidden" id="costo12" value=2>2 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="13"></td>
-					<td>Accón 13</td>
-					<td><input type="hidden" id="costo13" value=5>5 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="14"></td>
-					<td>Accón 14</td>
-					<td><input type="hidden" id="costo14" value=1>1 hora</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="15"></td>
-					<td>Accón 15</td>
-					<td><input type="hidden" id="costo15" value=15>15 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="16"></td>
-					<td>Accón 16</td>
-					<td><input type="hidden" id="costo16" value=2>2 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="17"></td>
-					<td>Accón 17</td>
-					<td><input type="hidden" id="costo17" value=18>18 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="18"></td>
-					<td>Accón 18</td>
-					<td><input type="hidden" id="costo18" value=1>1 hora</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="19"></td>
-					<td>Accón 19</td>
-					<td><input type="hidden" id="costo19" value=3>3 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="20"></td>
-					<td>Accón 20</td>
-					<td><input type="hidden" id="costo20" value=10>10 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="21"></td>
-					<td>Accón 21</td>
-					<td><input type="hidden" id="costo21" value=4>4 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="22"></td>
-					<td>Accón 22</td>
-					<td><input type="hidden" id="costo22" value=2>2 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="23"></td>
-					<td>Accón 23</td>
-					<td><input type="hidden" id="costo23" value=5>5 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="24"></td>
-					<td>Accón 24</td>
-					<td><input type="hidden" id="costo24" value=1>1 hora</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="25"></td>
-					<td>Accón 25</td>
-					<td><input type="hidden" id="costo25" value=15>15 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="26"></td>
-					<td>Accón 26</td>
-					<td><input type="hidden" id="costo26" value=2>2 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="27"></td>
-					<td>Accón 27</td>
-					<td><input type="hidden" id="costo27" value=18>18 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="28"></td>
-					<td>Accón 28</td>
-					<td><input type="hidden" id="costo28" value=1>1 hora</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="29"></td>
-					<td>Accón 29</td>
-					<td><input type="hidden" id="costo29" value=3>3 horas</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" value="" id="30"></td>
-					<td>Accón 30</td>
-					<td><input type="hidden" id="costo30" value=10>10 horas</td>
+					<td>3</td>
 				</tr>		
 			</table>
 		</div>
