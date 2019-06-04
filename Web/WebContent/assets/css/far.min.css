@@ -12,6 +12,8 @@
 
 .input-sumadehoras {
 	height:25px; width:50px; text-align:right; color:#ffffff;
+	border-radius: 2rem;
+	padding-right: 5px;
 }
 
 .input-sumadehoras-bajo {
