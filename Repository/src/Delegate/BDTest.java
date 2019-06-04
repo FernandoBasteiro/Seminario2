@@ -91,11 +91,16 @@ public class BDTest {
 	}
 	
 	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
-		usr.setToken(usuario.getToken());
-		usuario.setActivo(usr.isActivo());
-		usuario.setNombre(usr.getNombre());
-		usuario.setVarDispHoraria(usr.getVarDispHoraria());
-		return usuario;
+		if (usuario.getPwd().equals(usr.getPwd())) {
+			usr.setToken(usuario.getToken());
+			usuario.setActivo(usr.isActivo());
+			usuario.setNombre(usr.getNombre());
+			usuario.setVarDispHoraria(usr.getVarDispHoraria());
+			return usuario;			
+		}
+		else {
+			throw new LoggedInException("Ups, hubo algún error con tu nombre de usuario y contraseña. Volve a probar:");
+		}
 	}
 	
 	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {

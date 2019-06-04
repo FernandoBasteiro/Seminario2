@@ -86,3 +86,12 @@ function cargarPerfil() {
 		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text(), 'Modificar perfil');
 	}
 }
+
+function sumarHoras(checkbox, cant) {
+	var horas = cant;
+	if (! checkbox.checked) {
+		horas = horas * -1;
+	}
+	var anterior = parseInt($("#sumaHoras").val());
+	$("#sumaHoras").val(horas + anterior);
+}
