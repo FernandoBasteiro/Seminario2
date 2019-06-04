@@ -3,10 +3,12 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.MetasDTO"%>
 <%@ page import="dto.ProcedimientoDTO"%>
+<%@ page import="dto.UsuarioDTO"%>
 
 <%
 ArrayList<ProcedimientoDTO> procs = (ArrayList<ProcedimientoDTO>) request.getAttribute("procs");
 MetasDTO meta = (MetasDTO) request.getAttribute("meta");
+UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("loggedUsr");
 %>
 <html>
 <head>
@@ -14,13 +16,31 @@ MetasDTO meta = (MetasDTO) request.getAttribute("meta");
 </head>
 <body>
 	<div class="card shadow">
-		<div class="card-header py-3">
+		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary"><span id="desc"><%=meta.getDescripcion() %></span></br>
 			<span class="badge badge-primary" id="accion"><%=meta.getVarAccion() %></span>
 			<span class="badge badge-primary" id="sujeto"><%=meta.getVarSujeto() %></span>
 			<span class="badge badge-primary" id="nivel"><%=meta.getVarNivel() %></span></h6>
+			<div class="row mr-2">
+				<h6 class="m-0 font-weight-bold text-primary my-1 mr-2">Horas totales:</h6>
+				<input type="text" disabled id="sumaHoras" class="input-sumadehoras input-sumadehoras-bajo" value=0>
+				<input type="hidden" id="horasPerfil" value=<%=usuario.getVarDispHoraria() %>>
+			</div>
 		</div>
 		<div class="card-body ml-2" id="procs">
+			<table class="table table-hover">
+				<tr>
+					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
+				</tr>
+				<% for (ProcedimientoDTO p : procs) { %>
+				<tr>
+					<td><input type="checkbox" value="" id="1" onClick="sumarHoras($(this), 4)"></td>
+					<td><%=p.getDescripcion() %></td>
+					<td><%=p.getDuracion() %> hora<% if (p.getDuracion() > 0) out.print("s"); %></td>
+					<td><%=p.getCalificacion() %></td>
+				</tr>
+				<% } %>
+			</table>
 			<% for (ProcedimientoDTO p : procs) { %>
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" value=""

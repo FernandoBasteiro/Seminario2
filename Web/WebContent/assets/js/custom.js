@@ -94,7 +94,7 @@ function cargarPerfil() {
 
 function sumarHoras(checkbox, cant) {
 	var horas = cant;
-	if (! checkbox.checked) {
+	if (! checkbox.prop("checked")) {
 		horas = horas * -1;
 	}
 	var anterior = parseInt($("#sumaHoras").val());

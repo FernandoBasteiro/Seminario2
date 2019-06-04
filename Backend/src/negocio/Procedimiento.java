@@ -7,25 +7,37 @@ public class Procedimiento {
 	private String descripcion;
 	private String url; 
 	private int duracion;
-	
-	public Procedimiento() {
-	}
+	private Integer cantCalif;
+	private Integer sumaCalif;
 	
 	public Procedimiento(String descripcion, String url, int duracion) {
 		this.descripcion = descripcion;
 		this.url = url;
 		this.duracion = duracion;
+		this.cantCalif = 0;
+		this.sumaCalif = 0;
 	}
 
-	public Procedimiento(int id, String descripcion, String url, int duracion) {
+	public Procedimiento(int id, String descripcion, String url, int duracion, int cantCalif, int sumaCalif) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.url = url;
 		this.duracion = duracion;
+		this.cantCalif = cantCalif;
+		this.sumaCalif = sumaCalif;
 	}
 
 	public ProcedimientoDTO toDTO() {
-		return new ProcedimientoDTO(this.id, this.descripcion, this.url, this.duracion);
+		return new ProcedimientoDTO(this.id, this.descripcion, this.url, this.duracion, this.calcularCalificacion());
+	}
+	
+	public void calificar(int nota) {
+		this.cantCalif++;
+		this.sumaCalif = this.sumaCalif + nota;
+	}
+	
+	public float calcularCalificacion() {
+		return (float)sumaCalif/cantCalif;
 	}
 	
 	public int getId() {

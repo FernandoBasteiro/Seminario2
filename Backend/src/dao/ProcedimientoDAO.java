@@ -27,12 +27,7 @@ public class ProcedimientoDAO {
 	}
 		
 	public Procedimiento toNegocio(ProcedimientoEntity pe) {
-		Procedimiento p = new Procedimiento();
-		p.setId(pe.getId());
-		p.setDescripcion(pe.getDescripcion());
-		p.setUrl(pe.getUrl());
-		p.setDuracion(pe.getDuracion());
-		return p;
+		return new Procedimiento(pe.getId(), pe.getDescripcion(), pe.getUrl(), pe.getDuracion(), pe.getCantCalif(), pe.getSumaCalif());
 	}
 
 	public ArrayList<Procedimiento> listarProcedimientos(Usuario u, Metas m) {

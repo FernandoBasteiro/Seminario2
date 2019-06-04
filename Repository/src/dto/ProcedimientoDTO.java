@@ -7,13 +7,15 @@ public class ProcedimientoDTO implements Serializable{
 	private int id;
 	private String descripcion;
 	private String url; 
-	private int duracion;
+	private Integer duracion;
+	private Float calificacion;
 	
-	public ProcedimientoDTO(int id, String descripcion, String url, int duracion) {
+	public ProcedimientoDTO(int id, String descripcion, String url, int duracion, float calificacion) {
 		this.id = id;
 		this.descripcion = descripcion;
 		this.url = url;
 		this.duracion = duracion;
+		this.calificacion = calificacion;
 	}
 	
 	public ProcedimientoDTO(String descripcion, String url, int duracion) {
@@ -44,11 +46,17 @@ public class ProcedimientoDTO implements Serializable{
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	public int getDuracion() {
+	public Integer getDuracion() {
 		return duracion;
 	}
-	public void setDuracion(int duracion) {
+	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
+	}
+	public Float getCalificacion() {
+		return calificacion;
+	}
+	public void setCalificacion(Float calificacion) {
+		this.calificacion = calificacion;
 	}
 	
 	

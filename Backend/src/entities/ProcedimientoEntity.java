@@ -14,11 +14,15 @@ public class ProcedimientoEntity {
 	private String descripcion;
 	private String url; 
 	private int duracion;
+	private Integer cantCalif;
+	private Integer sumaCalif;
 	
-	public ProcedimientoEntity(String descripcion, String url, int duracion) {
+	public ProcedimientoEntity(String descripcion, String url, int duracion, int cantCalif, int sumaCalif) {
 		this.descripcion = descripcion;
 		this.url = url;
 		this.duracion = duracion;
+		this.cantCalif = cantCalif;
+		this.sumaCalif = sumaCalif;
 	}
 
 	public ProcedimientoEntity() {}
@@ -53,6 +57,22 @@ public class ProcedimientoEntity {
 
 	public void setDuracion(int duracion) {
 		this.duracion = duracion;
+	}
+
+	public Integer getCantCalif() {
+		return cantCalif;
+	}
+
+	public void setCantCalif(Integer cantCalif) {
+		this.cantCalif = cantCalif;
+	}
+
+	public Integer getSumaCalif() {
+		return sumaCalif;
+	}
+
+	public void setSumaCalif(Integer sumaCalif) {
+		this.sumaCalif = sumaCalif;
 	}
 	
 }
