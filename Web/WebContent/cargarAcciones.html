@@ -20,7 +20,7 @@
 				<tr>
 					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
 				</tr>
-				<tr>
+				<tr onclick="$('#1').prop('checked', !$('#1').prop('checked'))">
 					<td><input type="checkbox" value="" id="1" onClick="sumarHoras($(this), 4)"></td>
 					<td>Accón 1</td>
 					<td>4 horas</td>
@@ -59,25 +59,25 @@
 				<tr>
 					<td><input type="checkbox" value="" id="7" onClick="sumarHoras(this, 700)"></td>
 					<td>Accón 7</td>
-					<td><input type="hidden" id="costo7" value=18>18 horas</td>
+					<td><input type="hidden" id="costo7" value=18>700 horas</td>
 					<td>6.5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" value="" id="8" onClick="sumarHoras(this, 8000)"></td>
 					<td>Accón 8</td>
-					<td><input type="hidden" id="costo8" value=1>1 hora</td>
+					<td><input type="hidden" id="costo8" value=8000>1 hora</td>
 					<td>6</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" value="" id="9" onClick="sumarHoras(this, 100)"></td>
 					<td>Accón 9</td>
-					<td><input type="hidden" id="costo9" value=3>3 horas</td>
+					<td><input type="hidden" id="costo9" value=100>3 horas</td>
 					<td>5</td>
 				</tr>
 				<tr>
 					<td><input type="checkbox" value="" id="10" onClick="sumarHoras(this, 1000)"></td>
 					<td>Accón 10</td>
-					<td><input type="hidden" id="costo10" value=10>10 horas</td>
+					<td><input type="hidden" id="costo10" value=1000>10 horas</td>
 					<td>3</td>
 				</tr>		
 			</table>

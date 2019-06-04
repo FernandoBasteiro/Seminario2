@@ -33,21 +33,14 @@ UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("loggedUsr");
 					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
 				</tr>
 				<% for (ProcedimientoDTO p : procs) { %>
-				<tr>
-					<td><input type="checkbox" value="" id="1" onClick="sumarHoras($(this), 4)"></td>
+				<tr onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">
+					<td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td>
 					<td><%=p.getDescripcion() %></td>
-					<td><%=p.getDuracion() %> hora<% if (p.getDuracion() > 0) out.print("s"); %></td>
+					<td><%=p.getDuracion() %> hora<% if (p.getDuracion() != 1) out.print("s"); %></td>
 					<td><%=p.getCalificacion() %></td>
 				</tr>
 				<% } %>
 			</table>
-			<% for (ProcedimientoDTO p : procs) { %>
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value=""
-					id=<%=p.getId() %>> <label class="form-check-label"
-					for=<%=p.getId() %>> <%=p.getDescripcion() %> (<%=p.getDuracion() %> hora<% if(p.getDuracion() != 1) out.print("s"); %>) </label>
-			</div>
-			<% } %>
 			<div class="col-auto my-1" align="center">
 				<h6 class="errores desaparecer" id="mensajeError">Tenés que seleccionar al menos uno de los procedimientos propuestos.</h6>
 				<button

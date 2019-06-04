@@ -31,7 +31,7 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in dropdown-primary" aria-labelledby="dropdownMenuLink">
 					<div class="dropdown-header">Opciones:</div>
-					<a class="dropdown-item" href="#">Cancelar meta</a> 
+					<a class="dropdown-item" href="#">Cargar nuevo procedimiento</a> 
 					<a class="dropdown-item" href="#">Meta finalizada</a>
 				</div>
 			</div>
