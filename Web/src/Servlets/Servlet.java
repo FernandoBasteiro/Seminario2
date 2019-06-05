@@ -50,6 +50,13 @@ public class Servlet extends HttpServlet {
 					session.setAttribute("loggedUsr", usr);
 				}
 			}
+			else if ("existeUsuario".equals(action)) {
+				String usuario = request.getParameter("usuario");
+				UsuarioDTO u = new UsuarioDTO(usuario, null, null);
+				if (! bd.existeUsuarios(u)) {
+					response.setStatus(598);
+				}
+			}
 			else if ("listarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
