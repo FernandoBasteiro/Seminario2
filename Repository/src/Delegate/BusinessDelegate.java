@@ -114,6 +114,15 @@ public class BusinessDelegate {
 			throw new ComunicacionException("Error en las comunicaciones");	
 		}
 	}
+	
+	public Boolean existeUsuario(UsuarioDTO usuario) throws ComunicacionException {
+		try {
+			return ir.existeUsuario(usuario);
+		} catch (RemoteException e) {
+			throw new ComunicacionException("Error en las comunicaciones");	
+		}
+	}
+	
 	public ArrayList<TagMetaDTO> getTagsMetas() {
 		if (tags == null) {
 			tags = new ArrayList<TagMetaDTO>();

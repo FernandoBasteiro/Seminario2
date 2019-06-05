@@ -66,7 +66,14 @@ public class AdministrarUsuarios {
 		} else throw new ComunicacionException("El Usuario no existe");
 	}
 	
-
+	public Boolean existeUsuario(UsuarioDTO usuario) throws ComunicacionException {
+		if (buscarUsuario(usuario.getLogin()) == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException {
 		Usuario u;

@@ -14,6 +14,7 @@ import excepciones.LoggedInException;
 public class BDTest {
 	private static BDTest instance;
 	private UsuarioDTO usr;
+	private ArrayList<UsuarioDTO> usuarios;
 	private ArrayList<MetasDTO> metas;
 	private ArrayList<ProcedimientoDTO> procedimientos;
 	private ArrayList<TagMetaDTO> tags;
@@ -23,53 +24,55 @@ public class BDTest {
 		procedimientos = new ArrayList<ProcedimientoDTO>();
 		usr = new UsuarioDTO(1, "falbino", "1234", "Fabian Albino", "", "CABA", 20, "Asd?", true);
 		usr.setVarFechaNac(LocalDate.of(1987, 9, 19));
+		usuarios.add(usr);
 		ArrayList<ProcedimientoDTO> ps = new ArrayList<ProcedimientoDTO>();
 		ProcedimientoDTO p = new ProcedimientoDTO(1, "Curso de manejo para maquinas grandes", "URL 1", 1, (float)9.3);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(2, "Paseo por el campo en tractor", "URL 2", 7, (float)9);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(3, "400 horas de practica con tractor", "URL 3", 400, (float)8.5);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		MetasDTO m = new MetasDTO("Quiero aprender a manejar tractores azules", false, "Aprender", "Manejar", "Avanzado", ps, usr.getLogin());
 		metas.add(m);
 		
 		ps = new ArrayList<ProcedimientoDTO>();
 		p = new ProcedimientoDTO(4, "Accion 1", "URL 1", 1, (float)9.5);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(5, "Accion 2", "URL 2", 3, (float)9);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(3, "400 horas de practica con tractor", "URL 3", 400, (float)8.5);
 		ps.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(7, "Accion 4", "URL 4", 2, (float)7);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(8, "Accion 5", "URL 5", 1, (float)5.3);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		m = new MetasDTO("Quiero aprender a hablar swahili", false, "Aprender", "Idioma", "Basico", ps, usr.getLogin());
 		metas.add(m);
 		
 		ps = new ArrayList<ProcedimientoDTO>();
 		p = new ProcedimientoDTO(9, "Accion 1", "URL 1", 2, (float)9.3);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(10, "Accion 2", "URL 2", 7, (float)8);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(11, "Accion 3", "URL 3", 2, (float)7.6);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(12, "Accion 4", "URL 4", 1, (float)5);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		p = new ProcedimientoDTO(13, "Accion 5", "URL 5", 1, (float)3.4);
 		ps.add(p);
-		procedimientos.add(p);
+		this.cargarProc(p);
 		m = new MetasDTO("Quiero bajar 1 kilo", false, "Ejercicitar", "Bajar de Peso", "Leve", ps, usr.getLogin());
 		metas.add(m);
 	}
@@ -91,7 +94,8 @@ public class BDTest {
 	}
 	
 	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
-		if (usuario.getPwd().equals(usr.getPwd())) {
+		this.usr = this.buscarUsuario(usuario.getLogin());
+		if (usr != null && usuario.getPwd().equals(usr.getPwd())) {
 			usr.setToken(usuario.getToken());
 			usuario.setActivo(usr.isActivo());
 			usuario.setNombre(usr.getNombre());
@@ -157,6 +161,22 @@ public class BDTest {
 		else {
 			throw new LoggedInException("No esta logueado");
 		}
+	}
+	
+	public Boolean existeUsuarios(UsuarioDTO u) throws ComunicacionException {
+		if (buscarUsuario(u.getLogin()) == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	private UsuarioDTO buscarUsuario(String login) throws ComunicacionException {
+		for (UsuarioDTO u : usuarios) {
+			if (u.getLogin().equals(login)) return u;
+		}
+		return null;
 	}
 	
 	private void cargarProc(ProcedimientoDTO p) {

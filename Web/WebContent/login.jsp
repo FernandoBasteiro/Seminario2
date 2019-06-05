@@ -11,6 +11,7 @@
 <meta name="author" content="">
 
 <title>FAR - Ingreso</title>
+<link rel="shortcut icon" href="assets/img/FavIcon.png">
 
 <!-- Custom fonts for this template-->
 <link href="assets/fontawesome/css/all.min.css" rel="stylesheet"

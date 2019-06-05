@@ -52,11 +52,15 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 		return AdministrarProcedimientos.getInstancia().listarProcedimiento(usuario, meta);
 	}
 	
-	public void modificarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+	public void modificarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException {
 		AdministrarUsuarios.getInstancia().modificarPerfil(usuario);
 	}
 	
-	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
+	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException {
 		return AdministrarUsuarios.getInstancia().listarPerfil(usuario);
+	}
+	
+	public Boolean existeUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException {
+		return AdministrarUsuarios.getInstancia().existeUsuario(usuario);
 	}
 }

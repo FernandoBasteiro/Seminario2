@@ -29,4 +29,6 @@ public interface InterfaceRemota extends Remote {
 	public void modificarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 	
 	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
+
+	public Boolean existeUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException;
 }
