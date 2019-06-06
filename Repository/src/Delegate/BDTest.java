@@ -22,6 +22,7 @@ public class BDTest {
 	private BDTest() {
 		metas = new ArrayList<MetasDTO>();
 		procedimientos = new ArrayList<ProcedimientoDTO>();
+		usuarios = new ArrayList<UsuarioDTO>();
 		usr = new UsuarioDTO(1, "falbino", "1234", "Fabian Albino", "", "CABA", 20, "Asd?", true);
 		usr.setVarFechaNac(LocalDate.of(1987, 9, 19));
 		usuarios.add(usr);

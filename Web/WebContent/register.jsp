@@ -33,8 +33,7 @@
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
-          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-          <div class="col-lg-7">
+          <div class="col-lg-12">
             <div class="p-5">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">¡Create una cuenta!</h1>
@@ -48,8 +47,13 @@
                     <input type="text" class="form-control form-control-user" id="inApellido" name="apellido" placeholder="Apellido">
                   </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" id="usrDiv">
                   <input type="text" class="form-control form-control-user" id="inUsuario" name="usuario" placeholder="Nombre de Usuario">
+                </div>
+                <div class="form-group ml-2" id="ver">
+                	<span class="spinner-border text-primary spinner-border-sm mb-0 my-0 p-0 desaparecer" role="status" aria-hidden="true" id="loading"></span>
+                	<h6 class="errores mb-0 desaparecer" id="existe" style="margin-top:.3rem">El nombre de usuario ya existe</h6>
+                	<h6 class="confirmacion mb-0 desaparecer" id="noexiste" style="margin-top:.3rem">El nombre de usuario esta disponible</h6>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
@@ -72,18 +76,21 @@
         </div>
       </div>
     </div>
-
+<button onclick="loading">Loading</button>
+<button onclick="existe()">Existe</button>
+<button onclick="noExiste()">No Existe</button>
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/jquery/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="assets/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="assets/js/far.min.js"></script>
+  <script src="assets/js/registro.js"></script>
 
 </body>
 

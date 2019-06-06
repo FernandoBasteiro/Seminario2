@@ -53,7 +53,7 @@ public class Servlet extends HttpServlet {
 			else if ("existeUsuario".equals(action)) {
 				String usuario = request.getParameter("usuario");
 				UsuarioDTO u = new UsuarioDTO(usuario, null, null);
-				if (! bd.existeUsuarios(u)) {
+				if (bd.existeUsuarios(u)) {
 					response.setStatus(598);
 				}
 			}

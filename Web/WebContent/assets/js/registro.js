@@ -11,26 +11,25 @@ function passwordsMatch() {
 	}
 }
 
-function existeUsuario() {
+var existeUsuario = function() {
+	loading();
 	var xmlhttp = new XMLHttpRequest();
-	//TODO Hacer aparecer el loading
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			//TODO hacer desaparecer el loading y mostrar ok
+			noExiste();
 			return true;
 		}
 		else if (this.readyState == 4 && this.status == 598) {
-			//TODO hacer desaparecer el loading y mostrar error
+			existe();
 			return false;
 		}
 		else if (this.readyState == 4) {
 			//TODO hacer desaparecer el loading y mostrar error
 			return false;
-		}
-		xmlhttp.open("POST", "Servlet?action=existeUsuario", true);
-		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
-	    xmlhttp.send("usuario="+$("#inUsuario").val());
-	}
+		}};
+	xmlhttp.open("POST", "Servlet?action=existeUsuario", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+	xmlhttp.send("usuario="+$("#inUsuario").val());
 }
 
 function submitirFormulario() {
@@ -42,3 +41,40 @@ function submitirFormulario() {
 		correcto = false;
 	}
 }
+
+function loading() {
+	$("#usrDiv").addClass("mb-0");
+	$("#loading").removeClass("desaparecer");
+	$("#existe").addClass("desaparecer");
+	$("#noexiste").addClass("desaparecer");
+};
+function existe() {
+	$("#loading").addClass("desaparecer");
+	$("#existe").removeClass("desaparecer");
+	$("#noexiste").addClass("desaparecer");
+}
+function noExiste() {
+	$("#loading").addClass("desaparecer");
+	$("#existe").addClass("desaparecer");
+	$("#noexiste").removeClass("desaparecer");
+}
+
+function debounce(func, wait, inmediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!inmediate) func.apply(context, args);
+		};
+		var callNow = inmediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
+
+$(document).ready(function(){
+	$('#inUsuario').keyup(debounce(existeUsuario, 1000));
+});
+
