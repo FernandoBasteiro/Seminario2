@@ -33,7 +33,7 @@ UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("loggedUsr");
 					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
 				</tr>
 				<% for (ProcedimientoDTO p : procs) { %>
-				<tr onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">
+				<tr> <!-- onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">  -->
 					<td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td>
 					<td><%=p.getDescripcion() %></td>
 					<td><%=p.getDuracion() %> hora<% if (p.getDuracion() != 1) out.print("s"); %></td>

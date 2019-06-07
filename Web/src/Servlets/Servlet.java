@@ -77,6 +77,7 @@ public class Servlet extends HttpServlet {
 					uDTO.setVarFechaNac(LocalDate.parse(request.getParameter("fechaNac"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 					uDTO.setVarUbicacion(request.getParameter("ubicacion"));
 					bd.modificarPerfil(uDTO);
+					session.setAttribute("loggedUsr", uDTO);
 					request.setAttribute("perfil", uDTO);
 					request.setAttribute("success", true);
 					jspPage = "perfil.jsp";
