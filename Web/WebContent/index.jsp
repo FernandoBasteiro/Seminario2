@@ -24,7 +24,7 @@
 
 </head>
 <body id="page-top">
-<%
+<% 
 	UsuarioDTO loggedUser = null;
 	try {
 		loggedUser = (UsuarioDTO) session.getAttribute("loggedUsr");
