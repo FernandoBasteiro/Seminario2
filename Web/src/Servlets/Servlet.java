@@ -49,6 +49,11 @@ public class Servlet extends HttpServlet {
 					usr.setPwd(null);
 					session.setAttribute("loggedUsr", usr);
 				}
+			} else if ("logout".equals(action)) {
+				HttpSession session = request.getSession();
+				session.invalidate();
+				jspPage = "login.jsp";
+				request.setAttribute("error", "Usuario desconectado correctamente");
 			} else if ("crearUsuario".equals(action)) {
 				String strUsuarioFull = request.getParameter("usuario");
 				List<String> arrUsuario = Arrays.asList(strUsuarioFull.split(","));
