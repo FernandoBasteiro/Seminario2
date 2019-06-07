@@ -13,7 +13,7 @@ public class Usuario {
 	private String nombre;
 	private String token;
 	private String varUbicacion;
-	private int varDispHoraria;
+	private Integer varDispHoraria;
 	private String varNivel;
 	private boolean activo;
 	private LocalDate varFechaNac;
@@ -27,7 +27,7 @@ public class Usuario {
 	}
 
 	public Usuario(int id, String login, String pwd, String nombre, String token, String varUbicacion,
-			int varDispHoraria, String varNivel, boolean activo) {
+			Integer varDispHoraria, String varNivel, boolean activo) {
 		this.id = id;
 		this.login = login;
 		this.pwd = pwd;
@@ -114,11 +114,11 @@ public class Usuario {
 		this.varUbicacion = varUbicacion;
 	}
 
-	public int getVarDispHoraria() {
+	public Integer getVarDispHoraria() {
 		return varDispHoraria;
 	}
 
-	public void setVarDispHoraria(int varDispHoraria) {
+	public void setVarDispHoraria(Integer varDispHoraria) {
 		this.varDispHoraria = varDispHoraria;
 	}
 

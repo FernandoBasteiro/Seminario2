@@ -49,7 +49,7 @@ public class AdministrarUsuarios {
 	public void crearUsuario(UsuarioDTO usuario) throws ComunicacionException {
 		if (!UsuarioDAO.getInstancia().existeUsuarioByLogin(usuario.getLogin())) {
 			Usuario u = new Usuario(usuario.getLogin(), usuario.getPwd(), usuario.getNombre(), usuario.getToken(), true);
-			u.grabar();
+			u.crear();
 			LocalDateTime now = LocalDateTime.now();
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
 			System.out.println(dtf.format(now) + " - Se creo el Usuario: " + usuario.getLogin());

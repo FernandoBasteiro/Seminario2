@@ -35,7 +35,7 @@ public class UsuarioEntity {
 	public UsuarioEntity() {}
 
 	public UsuarioEntity(String login, String pwd, String nombre, String token, String varUbicacion,
-			int varDispHoraria, String varNivel, boolean activo, LocalDate varFechaNac) {
+			Integer varDispHoraria, String varNivel, boolean activo, LocalDate varFechaNac) {
 		this.login = login;
 		this.pwd = pwd;
 		this.nombre = nombre;
@@ -52,11 +52,7 @@ public class UsuarioEntity {
 	}
 
 	public void setVarFechaNac(LocalDate varFechaNac) {
-		this.varFechaNac = varFechaNac.toDateTime(LocalTime.MIDNIGHT).toCalendar(Locale.getDefault());
-	}
-
-	public void setVarDispHoraria(Integer varDispHoraria) {
-		this.varDispHoraria = varDispHoraria;
+		if (varFechaNac != null) this.varFechaNac = varFechaNac.toDateTime(LocalTime.MIDNIGHT).toCalendar(Locale.getDefault());
 	}
 
 	public UsuarioEntity(String login, String pwd, String nombre, String token, boolean activo) {
@@ -68,7 +64,7 @@ public class UsuarioEntity {
 	}
 	
 	public UsuarioEntity(Integer id, String login, String pwd, String nombre, String token, String varUbicacion,
-			int varDispHoraria, String varNivel, boolean activo) {
+			Integer varDispHoraria, String varNivel, boolean activo) {
 		this.id = id;
 		this.login = login;
 		this.pwd = pwd;
@@ -128,11 +124,11 @@ public class UsuarioEntity {
 		this.varUbicacion = varUbicacion;
 	}
 
-	public int getVarDispHoraria() {
+	public Integer getVarDispHoraria() {
 		return varDispHoraria;
 	}
 
-	public void setVarDispHoraria(int varDispHoraria) {
+	public void setVarDispHoraria(Integer varDispHoraria) {
 		this.varDispHoraria = varDispHoraria;
 	}
 

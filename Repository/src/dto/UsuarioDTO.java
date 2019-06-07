@@ -24,8 +24,8 @@ public class UsuarioDTO implements Serializable {
 		this.varFechaNac = varFechaNac;
 	}
 
-	public UsuarioDTO(int id, String login, String pwd, String nombre, String token, String varUbicacion,
-			int varDispHoraria, String varNivel, boolean activo) {
+	public UsuarioDTO(Integer id, String login, String pwd, String nombre, String token, String varUbicacion,
+			Integer varDispHoraria, String varNivel, boolean activo) {
 		this.id = id;
 		this.login = login;
 		this.pwd = pwd;
@@ -52,7 +52,7 @@ public class UsuarioDTO implements Serializable {
 	}
 	
 	public UsuarioDTO(String login, String pwd, String nombre, String token, String varUbicacion,
-			int varDispHoraria, String varNivel, boolean activo) {
+			Integer varDispHoraria, String varNivel, boolean activo) {
 		this.login = login;
 		this.pwd = pwd;
 		this.nombre = nombre;
@@ -63,11 +63,11 @@ public class UsuarioDTO implements Serializable {
 		this.activo = activo;
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
