@@ -85,6 +85,23 @@ function submitirFormulario() {
 	if (existeUsuario()) {
 		correcto = false;
 	}
+	
+	if (correcto) {
+		usuario = [];
+		usuario.push($("#inNombre").val());
+		usuario.push($("#inApellido").val());
+		usuario.push($("#inUsuario").val());
+		usuario.push($("#inPassword").val());
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				window.location.href = "/Web/login.jsp";
+			}
+		};
+		xmlhttp.open("POST", "Servlet?action=crearUsuario", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
+	    xmlhttp.send("usuario="+usuario);
+	}
 }
 
 function loading() {

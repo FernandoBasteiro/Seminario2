@@ -115,7 +115,7 @@ public class UsuarioDTO implements Serializable {
 		return varDispHoraria;
 	}
 
-	public void setVarDispHoraria(int varDispHoraria) {
+	public void setVarDispHoraria(Integer varDispHoraria) {
 		this.varDispHoraria = varDispHoraria;
 	}
 

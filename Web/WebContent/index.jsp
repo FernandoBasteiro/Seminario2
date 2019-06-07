@@ -27,8 +27,8 @@
 	UsuarioDTO loggedUser = null;
 	try {
 		loggedUser = (UsuarioDTO) session.getAttribute("loggedUsr");
-		Delegate.BDTest.getInstance().isLoggedIn(loggedUser);
-		//Delegate.BusinessDelegate.getInstance().isLoggedIn(loggedUser);
+		//Delegate.BDTest.getInstance().isLoggedIn(loggedUser);
+		Delegate.BusinessDelegate.getInstance().isLoggedIn(loggedUser);
 		String nombre = loggedUser.getNombre();
 		String iniciales = "";
 		for (String n : nombre.split(" ")) {

@@ -31,8 +31,8 @@ public class Servlet extends HttpServlet {
 		String jspPage = "index.jsp";
 		try {
 			String action = request.getParameter("action");
-			Delegate.BDTest bd = Delegate.BDTest.getInstance();
-			// Delegate.BusinessDelegate bd = Delegate.BusinessDelegate.getInstance();
+			// Delegate.BDTest bd = Delegate.BDTest.getInstance();
+			Delegate.BusinessDelegate bd = Delegate.BusinessDelegate.getInstance();
 
 			if ((action == null) || (action.length() < 1)) {
 				action = "default";
@@ -49,6 +49,11 @@ public class Servlet extends HttpServlet {
 					usr.setPwd(null);
 					session.setAttribute("loggedUsr", usr);
 				}
+			} else if ("crearUsuario".equals(action)) {
+				String strUsuarioFull = request.getParameter("usuario");
+				List<String> arrUsuario = Arrays.asList(strUsuarioFull.split(","));
+				UsuarioDTO usuario = new UsuarioDTO(arrUsuario.get(2), arrUsuario.get(3), arrUsuario.get(0) + " " + arrUsuario.get(1), null, true);
+				bd.crearUsuario(usuario);		
 			} else if ("listarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
 				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");

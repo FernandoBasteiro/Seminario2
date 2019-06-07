@@ -94,6 +94,11 @@ public class BDTest {
 		}
 	}
 	
+	public void crearUsuario(UsuarioDTO usuario) throws ComunicacionException {
+		usr = usuario;
+		usuarios.add(usr);
+	}
+	
 	public UsuarioDTO login(UsuarioDTO usuario) throws LoggedInException, ComunicacionException {
 		this.usr = this.buscarUsuario(usuario.getLogin());
 		if (usr != null && usuario.getPwd().equals(usr.getPwd())) {
