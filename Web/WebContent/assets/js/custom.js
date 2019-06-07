@@ -38,7 +38,7 @@
 	}
 	else {
 		$("#mensajeError").addClass("desaparecer");
-		if (parseInt($("#sumaHoras")) > parseInt($("#horasPerfil"))) {
+		if (parseInt($("#sumaHoras").val()) > parseInt($("#horasPerfil").val())) {
 			if (confirm("La duración de los procedimientos seleccionados supera las horas de tu perfil.\n¿Querés crear la meta igualmente?")) {
 				procs=[];
 				$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});

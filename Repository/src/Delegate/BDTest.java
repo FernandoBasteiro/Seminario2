@@ -86,7 +86,7 @@ public class BDTest {
 	}
 	
 	public boolean isLoggedIn(UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
-		if (usr.getToken()==usuario.getToken()) {
+		if (usr.getToken().equals(usuario.getToken())) {
 			return true;
 		}
 		else {
@@ -164,7 +164,7 @@ public class BDTest {
 		}
 	}
 	
-	public Boolean existeUsuarios(UsuarioDTO u) throws ComunicacionException {
+	public Boolean existeUsuario(UsuarioDTO u) throws ComunicacionException {
 		if (buscarUsuario(u.getLogin()) == null) {
 			return false;
 		}

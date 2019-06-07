@@ -38,7 +38,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">¡Create una cuenta!</h1>
               </div>
-              <form class="user">
+              <form class="user" autocomplete="off">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="text" class="form-control form-control-user" id="inNombre" name="nombre" placeholder="Nombre">
@@ -57,13 +57,13 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="inPassword" name="password" placeholder="Contraseña">
+                    <input type="password" class="form-control form-control-user" id="inPassword" name="password" onkeyup="passwordsMatch(); $(this).removeClass('is-invalid')" placeholder="Contraseña">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="inPassword2" name="password2" placeholder="Repetí tu contraseña">
+                    <input type="password" class="form-control form-control-user" id="inPassword2" name="password2" onkeyup="passwordsMatch(); $(this).removeClass('is-invalid')" placeholder="Repetí tu contraseña">
                   </div>
                 </div>
-                <a onClick="submitirFormulario()" class="btn btn-primary btn-user btn-block">
+                <a onClick="submitirFormulario()" href="#" class="btn btn-primary btn-user btn-block">
                   Crear cuenta
                 </a>
               </form>
@@ -76,9 +76,6 @@
         </div>
       </div>
     </div>
-<button onclick="loading">Loading</button>
-<button onclick="existe()">Existe</button>
-<button onclick="noExiste()">No Existe</button>
   </div>
 
   <!-- Bootstrap core JavaScript-->
@@ -90,7 +87,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="assets/js/far.min.js"></script>
-  <script src="assets/js/registro.js"></script>
+  <script src="assets/js/registro.js" charset="utf-8"></script>
 
 </body>
 

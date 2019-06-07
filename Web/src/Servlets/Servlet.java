@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import Delegate.BDTest;
-import Delegate.BusinessDelegate;
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
 import dto.TagMetaDTO;
@@ -33,12 +31,13 @@ public class Servlet extends HttpServlet {
 		String jspPage = "index.jsp";
 		try {
 			String action = request.getParameter("action");
-			//BDTest bd = BDTest.getInstance();
-			BusinessDelegate bd = BusinessDelegate.getInstance();
-			
+			Delegate.BDTest bd = Delegate.BDTest.getInstance();
+			// Delegate.BusinessDelegate bd = Delegate.BusinessDelegate.getInstance();
+
 			if ((action == null) || (action.length() < 1)) {
 				action = "default";
 			}
+
 			if ("login".equals(action)) {
 				HttpSession session = request.getSession();
 				String sessionId = session.getId();
@@ -50,31 +49,23 @@ public class Servlet extends HttpServlet {
 					usr.setPwd(null);
 					session.setAttribute("loggedUsr", usr);
 				}
-			}
-			else if ("existeUsuario".equals(action)) {
-				String usuario = request.getParameter("usuario");
-				UsuarioDTO u = new UsuarioDTO(usuario, null, null);
-				if (bd.existeUsuario(u)) {
-					response.setStatus(598);
-				}
-			}
-			else if ("listarPerfil".equals(action)) {
+			} else if ("listarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					uDTO = bd.listarPerfil(uDTO);
 					session.setAttribute("loggedUsr", uDTO);
 					jspPage = "perfil.jsp";
 				}
 
-			}
-			else if ("modificarPerfil".equals(action)) {
+			} else if ("modificarPerfil".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					uDTO = bd.listarPerfil(uDTO);
 					uDTO.setVarDispHoraria(Integer.valueOf(request.getParameter("dispHoraria")));
-					uDTO.setVarFechaNac(LocalDate.parse(request.getParameter("fechaNac"),DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+					uDTO.setVarFechaNac(LocalDate.parse(request.getParameter("fechaNac"),
+							DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 					uDTO.setVarUbicacion(request.getParameter("ubicacion"));
 					bd.modificarPerfil(uDTO);
 					session.setAttribute("loggedUsr", uDTO);
@@ -83,37 +74,34 @@ public class Servlet extends HttpServlet {
 					jspPage = "perfil.jsp";
 				}
 
-			}
-			else if ("listarMetas".equals(action)) {
+			} else if ("listarMetas".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
 					request.setAttribute("metas", metas);
 					jspPage = "verMetas.jsp";
-				} 
-			}
-			else if ("cargarMeta".equals(action)) {
+				}
+			} else if ("cargarMeta".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					uDTO = bd.listarPerfil(uDTO);
-					if (uDTO.getVarDispHoraria() == null || uDTO.getVarFechaNac() == null || uDTO.getVarUbicacion() == null) {
+					if (uDTO.getVarDispHoraria() == null || uDTO.getVarFechaNac() == null
+							|| uDTO.getVarUbicacion() == null) {
 						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
 						request.setAttribute("metas", metas);
 						request.setAttribute("error", "faltaPerfil");
 						jspPage = "verMetas.jsp";
-					}
-					else {
+					} else {
 						ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
 						request.setAttribute("tags", tags);
-						jspPage = "cargarMeta.jsp";						
+						jspPage = "cargarMeta.jsp";
 					}
 				}
-			}
-			else if ("listarAcciones".equals(action)) {
+			} else if ("listarAcciones".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					MetasDTO meta = new MetasDTO();
 					meta.setDescripcion(request.getParameter("nombre"));
@@ -125,10 +113,9 @@ public class Servlet extends HttpServlet {
 					request.setAttribute("procs", procs);
 					jspPage = "cargarAcciones.jsp";
 				}
-			}
-			else if ("crearMeta".equals(action)) {
+			} else if ("crearMeta".equals(action)) {
 				HttpSession session = request.getSession();
-				UsuarioDTO uDTO = (UsuarioDTO)session.getAttribute("loggedUsr");
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
 				if (uDTO != null) {
 					MetasDTO meta = new MetasDTO();
 					meta.setDescripcion(request.getParameter("nombre"));
@@ -146,7 +133,7 @@ public class Servlet extends HttpServlet {
 					}
 					meta.setProcedimientos(procs);
 					bd.altaMeta(uDTO, meta);
-					
+
 					ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
 					request.setAttribute("metas", metas);
 					jspPage = "verMetas.jsp";
