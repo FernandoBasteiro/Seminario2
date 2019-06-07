@@ -58,10 +58,10 @@ String error = (String) request.getAttribute("error");
 					type="number" class="form-control mb-3" id="disponibilidad" min=1 max=250 value=<%=usuario.getVarDispHoraria() %>>
 				<h6 class="errores desaparecer" id="errorDispo">La disponibilidad debe estar entre 1 y 250 horas.</h6>
 				<label for="ubicacion">Ubicación</label> <select class="custom-select mb-3"
-					id="ubicacion" data-live-search="true" value=<%=usuario.getVarUbicacion() %>>
+					id="ubicacion" data-live-search="true" value=<% if (usuario.getVarUbicacion() != null) out.print(usuario.getVarUbicacion()); %>>
 					<option value="" disabled <% if (usuario.getVarUbicacion() == null) {out.print("selected");} %>>Ubicación</option>
 					<% for (int i = 0; i < provincias.size(); i++) { %>
-					<option value=<%=i %> <% if (usuario.getVarUbicacion().equals(provincias.get(i))) {out.print("selected");} %>><%=provincias.get(i) %></option>
+					<option value=<%=i %> <% if (usuario.getVarUbicacion() != null && usuario.getVarUbicacion().equals(provincias.get(i))) {out.print("selected");} %>><%=provincias.get(i) %></option>
 					<% } %>
 				</select>
 				<h6 class="errores desaparecer" id="errorUbi">Se debe seleccionar una ubicación de la lista.</h6>

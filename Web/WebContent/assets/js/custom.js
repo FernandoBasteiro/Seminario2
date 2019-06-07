@@ -39,7 +39,7 @@
 	else {
 		$("#mensajeError").addClass("desaparecer");
 		if (parseInt($("#sumaHoras").val()) > parseInt($("#horasPerfil").val())) {
-			if (confirm("La duración de los procedimientos seleccionados supera las horas de tu perfil.\n¿Querés crear la meta igualmente?")) {
+			if (confirm("Los procedimientos seleccionados superan tu disponibilidad horaria.\n¿Estás seguro que queres seguir con esta selección?")) {
 				procs=[];
 				$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
 				tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];

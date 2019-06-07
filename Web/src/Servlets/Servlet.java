@@ -94,10 +94,8 @@ public class Servlet extends HttpServlet {
 					uDTO = bd.listarPerfil(uDTO);
 					if (uDTO.getVarDispHoraria() == null || uDTO.getVarFechaNac() == null
 							|| uDTO.getVarUbicacion() == null) {
-						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
-						request.setAttribute("metas", metas);
-						request.setAttribute("error", "faltaPerfil");
-						jspPage = "verMetas.jsp";
+						session.setAttribute("loggedUsr", uDTO);
+						jspPage = "perfil.jsp";
 					} else {
 						ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
 						request.setAttribute("tags", tags);

@@ -112,7 +112,8 @@ public class AdministrarUsuarios {
 			usuario.setVarDispHoraria(u.getVarDispHoraria());
 			usuario.setVarUbicacion(u.getVarUbicacion());
 			org.joda.time.LocalDate jodaTime = u.getVarFechaNac();
-			java.time.LocalDate javaTime = java.time.LocalDate.of(jodaTime.getYear(), jodaTime.getMonthOfYear(), jodaTime.getDayOfMonth());
+			java.time.LocalDate javaTime = null;
+			if (jodaTime != null) javaTime = java.time.LocalDate.of(jodaTime.getYear(), jodaTime.getMonthOfYear(), jodaTime.getDayOfMonth());
 			usuario.setVarFechaNac(javaTime);
 		}
 		return usuario;
