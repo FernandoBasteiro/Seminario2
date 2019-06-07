@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="dto.UsuarioDTO"%>
-<%@ page import="Delegate.BDTest"%>
+<%@ page import="Delegate.BusinessDelegate"%>
 
 
 <html>
@@ -28,7 +28,7 @@
 	UsuarioDTO loggedUser = null;
 	try {
 		loggedUser = (UsuarioDTO) session.getAttribute("loggedUsr");
-		BDTest.getInstance().isLoggedIn(loggedUser);
+		BusinessDelegate.getInstance().isLoggedIn(loggedUser);
 		String nombre = loggedUser.getNombre();
 		String iniciales = "";
 		for (String n : nombre.split(" ")) {

@@ -33,7 +33,8 @@ public class Servlet extends HttpServlet {
 		String jspPage = "index.jsp";
 		try {
 			String action = request.getParameter("action");
-			BDTest bd = BDTest.getInstance();
+			//BDTest bd = BDTest.getInstance();
+			BusinessDelegate bd = BusinessDelegate.getInstance();
 			
 			if ((action == null) || (action.length() < 1)) {
 				action = "default";
@@ -53,7 +54,7 @@ public class Servlet extends HttpServlet {
 			else if ("existeUsuario".equals(action)) {
 				String usuario = request.getParameter("usuario");
 				UsuarioDTO u = new UsuarioDTO(usuario, null, null);
-				if (bd.existeUsuarios(u)) {
+				if (bd.existeUsuario(u)) {
 					response.setStatus(598);
 				}
 			}
