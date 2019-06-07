@@ -177,7 +177,7 @@
 	<!-- Custom scripts for all pages-->
 	<script src="assets/js/far.min.js"></script>
 
-	<script src="assets/js/custom.js"></script>
+	<script src="assets/js/custom.js" charset="utf-8"></script>
 <% 	} catch (Exception e) {
 	response.sendRedirect("/Web/login.jsp");
 }
