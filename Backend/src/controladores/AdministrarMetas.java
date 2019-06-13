@@ -28,7 +28,7 @@ public class AdministrarMetas {
 		return instancia;
 	}
 
-	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException {
+	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
 		Metas m = new Metas(meta.getId(), meta.getDescripcion(), meta.isCompleta(), meta.getVarAccion(), meta.getVarSujeto(), meta.getVarNivel());
 		ArrayList<Procedimiento> procedimientos = new ArrayList<Procedimiento>();
 		for (ProcedimientoDTO p : meta.getProcedimientos()) {

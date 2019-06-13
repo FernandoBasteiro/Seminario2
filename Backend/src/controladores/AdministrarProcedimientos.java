@@ -1,6 +1,14 @@
 package controladores;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import dao.MetasDAO;
 import dao.ProcedimientoDAO;
@@ -8,6 +16,7 @@ import dao.UsuarioDAO;
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
 import dto.UsuarioDTO;
+import entities.MetasEntity;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
 import negocio.Metas;
@@ -27,14 +36,24 @@ public class AdministrarProcedimientos {
 	}
 
 	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
-		Metas m = MetasDAO.getInstancia().getMetaByUsuarioMeta(usuario.getLogin(), meta.getDescripcion());		
-		Usuario u = UsuarioDAO.getInstancia().toNegocio(UsuarioDAO.getInstancia().getUsuaruiByLogin(usuario.getLogin()));
-		ArrayList<Procedimiento> ps = ProcedimientoDAO.getInstancia().listarProcedimientos(u, m);
 		ArrayList<ProcedimientoDTO> psDTO = new ArrayList<ProcedimientoDTO>();
-		for (Procedimiento p : ps) {
-			psDTO.add(p.toDTO());
+		
+		ArrayList<Usuario> uList = new ArrayList<Usuario>();
+		uList = UsuarioDAO.getInstancia().getUsuaruiByPerfil(usuario.getVarUbicacion());
+		for (Usuario u : uList) {
+			ArrayList<Metas> mList = new ArrayList<Metas>();
+			mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
+			for(Metas m : mList) {
+				if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
+					for(Procedimiento p : m.getProcedimientos()) {
+						psDTO.add(p.toDTO());	
+					}
+				}
+			}
 		}
+		
 		return psDTO;
 	}
+
 
 }

@@ -75,7 +75,7 @@ public class BusinessDelegate {
 		}
 	}
 	
-	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException {
+	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
 		try {
 			ir.altaMeta(usuario, meta);
 		} catch (RemoteException e) {
@@ -147,7 +147,7 @@ public class BusinessDelegate {
 			tags.add(tag);
 			tag = new TagMetaDTO("Deporte",TipoTagsMetas.Sujeto);
 			tags.add(tag);
-			tag = new TagMetaDTO("Estetica",TipoTagsMetas.Sujeto);
+			tag = new TagMetaDTO("Arte",TipoTagsMetas.Sujeto);
 			tags.add(tag);
 			tag = new TagMetaDTO("Espiritual",TipoTagsMetas.Sujeto);
 			tags.add(tag);

@@ -20,7 +20,7 @@ public interface InterfaceRemota extends Remote {
 	
 	public UsuarioDTO login(UsuarioDTO usuario) throws RemoteException, LoggedInException;
 	
-	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException;
+	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException;
 	
 	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 	

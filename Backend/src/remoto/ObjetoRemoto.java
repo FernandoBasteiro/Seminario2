@@ -40,7 +40,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 		return AdministrarUsuarios.getInstancia().login(usuario);
 	}
 	
-	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException {
+	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException{
 		AdministrarMetas.getInstancia().altaMeta(usuario, meta);
 	}
 	

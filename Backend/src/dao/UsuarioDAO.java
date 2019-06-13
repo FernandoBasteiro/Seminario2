@@ -1,11 +1,16 @@
 package dao;
 
+import java.util.ArrayList;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import controladores.HibernateUtil;
+import entities.MetasEntity;
 import entities.UsuarioEntity;
 import excepciones.ComunicacionException;
+import negocio.Metas;
 import negocio.Usuario;
 
 public class UsuarioDAO {
@@ -93,5 +98,18 @@ private static UsuarioDAO instancia;
 					.uniqueResult();
 			if (ue != null) return true;
 			else return false;
+		}
+		
+		public ArrayList<Usuario> getUsuaruiByPerfil(String ubicacion) throws ComunicacionException {
+			SessionFactory sf = HibernateUtil.getSessionFactory();
+			Session session = sf.openSession();
+			Query q = session.createQuery("from UsuarioEntity where varUbicacion = ?");
+			q.setParameter(0, ubicacion);
+			@SuppressWarnings("unchecked")
+			ArrayList<UsuarioEntity> uen = (ArrayList<UsuarioEntity>) q.list();
+			
+			ArrayList<Usuario> us = new ArrayList<Usuario>();
+			for (UsuarioEntity u : uen) us.add(UsuarioDAO.getInstancia().toNegocio(u));
+			return us;
 		}
 }
