@@ -15,6 +15,7 @@ import dao.ProcedimientoDAO;
 import dao.UsuarioDAO;
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
+import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
 import entities.MetasEntity;
 import excepciones.ComunicacionException;
@@ -35,8 +36,10 @@ public class AdministrarProcedimientos {
 		return instancia;
 	}
 
-	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
+	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
 		ArrayList<ProcedimientoDTO> psDTO = new ArrayList<ProcedimientoDTO>();
+		ArrayList<ProcedimientoDTO> rpsDTO = new ArrayList<ProcedimientoDTO>();
+		ArrayList<MetasDTO> mDTO = new ArrayList<MetasDTO>();
 		
 		ArrayList<Usuario> uList = new ArrayList<Usuario>();
 		uList = UsuarioDAO.getInstancia().getUsuaruiByPerfil(usuario.getVarUbicacion());
@@ -45,15 +48,37 @@ public class AdministrarProcedimientos {
 			mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
 			for(Metas m : mList) {
 				if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
+					mDTO.add(m.toDTO());
 					for(Procedimiento p : m.getProcedimientos()) {
-						psDTO.add(p.toDTO());	
+						if (p.getEsPromo()) rpsDTO.add(p.toDTO());
+						else psDTO.add(p.toDTO());	
 					}
 				}
 			}
 		}
-		
-		return psDTO;
+		RecomendacionesDTO rec = new RecomendacionesDTO(ordenarSinDups(rpsDTO), sumaHoras(rpsDTO), ordenarSinDups(psDTO), mDTO);
+		return rec;
 	}
-
-
+	
+	private Integer sumaHoras(ArrayList<ProcedimientoDTO> procs) {
+		Integer suma = 0;
+		for (ProcedimientoDTO p : procs) suma = suma + p.getDuracion();
+		return suma;
+	}
+	
+	private ArrayList<ProcedimientoDTO> ordenarSinDups(ArrayList<ProcedimientoDTO> procs) {
+		int i = 0;
+		while (i < procs.size()) {
+			for (int j = procs.size()-1; j > i; j--) {
+				if (procs.get(j).getId() == procs.get(i).getId()) procs.remove(j);
+				else if (procs.get(j).getCalificacion() > procs.get(i).getCalificacion()) {
+					ProcedimientoDTO aux = procs.get(i);
+					procs.set(i, procs.get(j));
+					procs.set(j, aux);
+				}
+			}
+			i++;
+		}
+		return procs;
+	}
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
+import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
@@ -24,7 +25,7 @@ public interface InterfaceRemota extends Remote {
 	
 	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 	
-	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException; 
+	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException; 
 	
 	public void modificarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 	

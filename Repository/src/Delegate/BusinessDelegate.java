@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dto.MetasDTO;
-import dto.ProcedimientoDTO;
+import dto.RecomendacionesDTO;
 import dto.TagMetaDTO;
 import dto.UsuarioDTO;
 import enumeraciones.TipoTagsMetas;
@@ -91,7 +91,7 @@ public class BusinessDelegate {
 		}
 	}
 	
-	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
+	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
 		try {
 			return ir.listarProcedimiento(usuario, meta);
 		} catch (RemoteException e) {

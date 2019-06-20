@@ -81,5 +81,13 @@ public class Procedimiento {
 	public void setDuracion(Integer duracion) {
 		this.duracion = duracion;
 	}
+
+	public Boolean getEsPromo() {
+		return esPromo;
+	}
+
+	public void setEsPromo(Boolean esPromo) {
+		this.esPromo = esPromo;
+	}
 		
 }

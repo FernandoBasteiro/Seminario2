@@ -8,7 +8,7 @@ import controladores.AdministrarMetas;
 import controladores.AdministrarProcedimientos;
 import controladores.AdministrarUsuarios;
 import dto.MetasDTO;
-import dto.ProcedimientoDTO;
+import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
@@ -48,7 +48,7 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 		return AdministrarMetas.getInstancia().listarMetas(usuario);
 	}
 	
-	public ArrayList<ProcedimientoDTO> listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException{
+	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException{
 		return AdministrarProcedimientos.getInstancia().listarProcedimiento(usuario, meta);
 	}
 	

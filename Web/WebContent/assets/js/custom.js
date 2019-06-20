@@ -136,18 +136,21 @@ function sumarHoras(checkbox, cant) {
 }
 
 function sumarHoras2(row, cant) {
-	var horas = cant;
-	if (row.hasClass("row-selected")) horas = horas * -1;
 	row.toggleClass("row-selected");
-	var anterior = parseInt($("#sumaHoras").val());
+	suma=0;
+	$(".row-selected").each(function () {suma = suma + parseInt($(this).attr('duracion'));})
+	$("#sumaHoras").val(suma);
+	semaforoHoras(suma);
+}
+
+function semaforoHoras(suma) {
 	var perfil = parseInt($("#horasPerfil").val());
-	$("#sumaHoras").val(horas + anterior);
-	if ((horas+anterior) < perfil * 0.8) {
+	if ((suma) < perfil * 0.8) {
 		$("#sumaHoras").addClass("input-sumadehoras-bajo");
 		$("#sumaHoras").removeClass("input-sumadehoras-medio");
 		$("#sumaHoras").removeClass("input-sumadehoras-alto");
 	}
-	else if ((horas+anterior) <= perfil) {
+	else if ((suma) <= perfil) {
 		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
 		$("#sumaHoras").addClass("input-sumadehoras-medio");
 		$("#sumaHoras").removeClass("input-sumadehoras-alto");
@@ -156,5 +159,16 @@ function sumarHoras2(row, cant) {
 		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
 		$("#sumaHoras").removeClass("input-sumadehoras-medio");
 		$("#sumaHoras").addClass("input-sumadehoras-alto");
+	}	
+}
+
+function agregarProcedimientos(procsStr) {
+	procsArr = procsStr.split(",");
+	for (i = 0; i < procsArr.length; i++) {
+		$("#"+procsArr[i]).addClass("row-selected");
 	}
+	suma=0;
+	$(".row-selected").each(function () {suma = suma + parseInt($(this).attr('duracion'));})
+	$("#sumaHoras").val(suma);
+	semaforoHoras(suma);
 }

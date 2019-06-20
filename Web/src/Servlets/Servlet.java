@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import dto.MetasDTO;
 import dto.ProcedimientoDTO;
+import dto.RecomendacionesDTO;
 import dto.TagMetaDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
@@ -124,9 +125,9 @@ public class Servlet extends HttpServlet {
 					meta.setVarAccion(request.getParameter("accion"));
 					meta.setVarSujeto(request.getParameter("sujeto"));
 					meta.setVarNivel(request.getParameter("nivel"));
-					ArrayList<ProcedimientoDTO> procs = bd.listarProcedimiento(uDTO, meta);
+					RecomendacionesDTO rec = bd.listarProcedimiento(uDTO, meta);
 					request.setAttribute("meta", meta);
-					request.setAttribute("procs", procs);
+					request.setAttribute("procs", rec);
 					jspPage = "cargarAcciones.jsp";
 				}
 			} else if ("crearMeta".equals(action)) {
