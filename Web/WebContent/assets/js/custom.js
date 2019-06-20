@@ -33,21 +33,33 @@
 }
  
  function crearMeta() {
+	 if ((parseInt($("#sumaHoras").val()) > parseInt($("#horasPerfil").val()) && 
+				confirm("Los procedimientos seleccionados superan tu disponibilidad horaria.\n¿Estás seguro que queres seguir con esta selección?")) || 
+				(parseInt($("#sumaHoras").val()) <= parseInt($("#horasPerfil").val()))) {
+			procs=[];
+			//$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
+			$(".row-selected").each(function() {procs.push($(this).attr('id'));});
+			tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];
+			nombre=$("#desc").text();
+			loadDiv('contenedor-principal','Servlet','action=crearMeta&nombre='+nombre+'&tags='+tags+'&procs='+procs, 'Mis metas');
+	}
+	/* 
 	if ($("#procs input:checked").length == 0) {
 		$("#mensajeError").removeClass("desaparecer");
 	}
 	else {
 		$("#mensajeError").addClass("desaparecer");
-		if (parseInt($("#sumaHoras").val()) > parseInt($("#horasPerfil").val())) {
-			if (confirm("Los procedimientos seleccionados superan tu disponibilidad horaria.\n¿Estás seguro que queres seguir con esta selección?")) {
-				procs=[];
-				$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
-				tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];
-				nombre=$("#desc").text();
-				loadDiv('contenedor-principal','Servlet','action=crearMeta&nombre='+nombre+'&tags='+tags+'&procs='+procs, 'Mis metas');
-			}
-		}		
+		if ((parseInt($("#sumaHoras").val()) > parseInt($("#horasPerfil").val()) && 
+				confirm("Los procedimientos seleccionados superan tu disponibilidad horaria.\n¿Estás seguro que queres seguir con esta selección?")) || 
+				(parseInt($("#sumaHoras").val()) <= parseInt($("#horasPerfil").val()))) {
+			procs=[];
+			$("#procs input:checked").each(function() {procs.push($(this).attr('id'));});
+			tags=[$("#accion").text(), $("#sujeto").text(), $("#nivel").text()];
+			nombre=$("#desc").text();
+			loadDiv('contenedor-principal','Servlet','action=crearMeta&nombre='+nombre+'&tags='+tags+'&procs='+procs, 'Mis metas');
+		}
 	}
+	*/
 }
  
 function cargarPerfil() {
@@ -88,7 +100,13 @@ function cargarPerfil() {
 		$("#ubicacion").removeClass("is-invalid");
 	}
 	if (! error) {
-		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text(), 'Modificar perfil');
+		if ($("#crearMeta").length > 0) {
+			crearMeta = "&crearMeta=true";
+		}
+		else {
+			crearMeta = "";
+		}
+		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text()+crearMeta, 'Modificar perfil');
 	}
 }
 
@@ -97,6 +115,30 @@ function sumarHoras(checkbox, cant) {
 	if (! checkbox.prop("checked")) {
 		horas = horas * -1;
 	}
+	var anterior = parseInt($("#sumaHoras").val());
+	var perfil = parseInt($("#horasPerfil").val());
+	$("#sumaHoras").val(horas + anterior);
+	if ((horas+anterior) < perfil * 0.8) {
+		$("#sumaHoras").addClass("input-sumadehoras-bajo");
+		$("#sumaHoras").removeClass("input-sumadehoras-medio");
+		$("#sumaHoras").removeClass("input-sumadehoras-alto");
+	}
+	else if ((horas+anterior) <= perfil) {
+		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
+		$("#sumaHoras").addClass("input-sumadehoras-medio");
+		$("#sumaHoras").removeClass("input-sumadehoras-alto");
+	}
+	else {
+		$("#sumaHoras").removeClass("input-sumadehoras-bajo");
+		$("#sumaHoras").removeClass("input-sumadehoras-medio");
+		$("#sumaHoras").addClass("input-sumadehoras-alto");
+	}
+}
+
+function sumarHoras2(row, cant) {
+	var horas = cant;
+	if (row.hasClass("row-selected")) horas = horas * -1;
+	row.toggleClass("row-selected");
 	var anterior = parseInt($("#sumaHoras").val());
 	var perfil = parseInt($("#horasPerfil").val());
 	$("#sumaHoras").val(horas + anterior);

@@ -79,9 +79,16 @@ public class Servlet extends HttpServlet {
 					uDTO.setVarUbicacion(request.getParameter("ubicacion"));
 					bd.modificarPerfil(uDTO);
 					session.setAttribute("loggedUsr", uDTO);
-					request.setAttribute("perfil", uDTO);
 					request.setAttribute("success", true);
-					jspPage = "perfil.jsp";
+					String crearMeta = request.getParameter("crearMeta");
+					if (crearMeta != null) {
+						ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
+						request.setAttribute("tags", tags);
+						jspPage = "cargarMeta.jsp";
+					}
+					else {
+						jspPage = "perfil.jsp";						
+					}
 				}
 
 			} else if ("listarMetas".equals(action)) {
@@ -100,6 +107,7 @@ public class Servlet extends HttpServlet {
 					if (uDTO.getVarDispHoraria() == null || uDTO.getVarFechaNac() == null
 							|| uDTO.getVarUbicacion() == null) {
 						session.setAttribute("loggedUsr", uDTO);
+						request.setAttribute("error", "faltaPerfil");
 						jspPage = "perfil.jsp";
 					} else {
 						ArrayList<TagMetaDTO> tags = bd.getTagsMetas();
@@ -134,10 +142,12 @@ public class Servlet extends HttpServlet {
 					meta.setVarNivel(strArrTags.get(2));
 					ArrayList<ProcedimientoDTO> procs = new ArrayList<ProcedimientoDTO>();
 					String strProcs = request.getParameter("procs");
-					List<String> strArrProcs = Arrays.asList(strProcs.split(","));
-					for (String i : strArrProcs) {
-						ProcedimientoDTO p = new ProcedimientoDTO(Integer.valueOf(i));
-						procs.add(p);
+					if (strProcs != null && ! strProcs.isEmpty()) {
+						List<String> strArrProcs = Arrays.asList(strProcs.split(","));
+						for (String i : strArrProcs) {
+							ProcedimientoDTO p = new ProcedimientoDTO(Integer.valueOf(i));
+							procs.add(p);
+						}						
 					}
 					meta.setProcedimientos(procs);
 					bd.altaMeta(uDTO, meta);

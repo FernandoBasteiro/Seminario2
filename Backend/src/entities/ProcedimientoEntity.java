@@ -13,11 +13,20 @@ public class ProcedimientoEntity {
 	private Integer id;
 	private String descripcion;
 	private String url; 
-	private int duracion;
+	private Integer duracion;
 	private Integer cantCalif;
 	private Integer sumaCalif;
+	private Boolean esPromo;
 	
-	public ProcedimientoEntity(String descripcion, String url, int duracion, int cantCalif, int sumaCalif) {
+	public Boolean getEsPromo() {
+		return esPromo;
+	}
+
+	public void setEsPromo(Boolean esPromo) {
+		this.esPromo = esPromo;
+	}
+
+	public ProcedimientoEntity(String descripcion, String url, Integer duracion, Integer cantCalif, Integer sumaCalif) {
 		this.descripcion = descripcion;
 		this.url = url;
 		this.duracion = duracion;

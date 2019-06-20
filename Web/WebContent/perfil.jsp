@@ -50,6 +50,7 @@ String error = (String) request.getAttribute("error");
 			<div class="col-md-12">
 				<% if (error != null && error.equals("faltaPerfil"))  {%>
 				<h6 class="errores" id="faltaPerfil">Para crear una meta, primero tenes que definir tu perfil.</h6>
+				<input type="hidden" id="crearMeta" value="true">
 				<% } %>
 				<label for="fechaNacimiento">Fecha de nacimiento</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>

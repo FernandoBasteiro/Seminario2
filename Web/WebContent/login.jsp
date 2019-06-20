@@ -21,7 +21,7 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="assets/css/far.min.css" rel="stylesheet">
+<link href="assets/css/far.css" rel="stylesheet">
 
 </head>
 

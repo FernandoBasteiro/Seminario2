@@ -30,11 +30,12 @@ UsuarioDTO usuario = (UsuarioDTO) session.getAttribute("loggedUsr");
 		<div class="card-body ml-2" id="procs">
 			<table class="table table-hover">
 				<tr>
-					<th></th><th>Descripción</th><th>Duración</th><th>Calificación</th>
+					<!--<th></th> --><th>Descripción</th><th>Duración</th><th>Calificación</th>
 				</tr>
 				<% for (ProcedimientoDTO p : procs) { %>
-				<tr> <!-- onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">  -->
-					<td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td>
+				<tr onClick="sumarHoras2($(this), <%=p.getDuracion() %>)" id=<%=p.getId() %>>
+				<!-- <tr> onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">  -->
+					<!-- <td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td> -->
 					<td><%=p.getDescripcion() %></td>
 					<td><%=p.getDuracion() %> hora<% if (p.getDuracion() != 1) out.print("s"); %></td>
 					<td><%=p.getCalificacion() %></td>

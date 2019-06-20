@@ -19,7 +19,7 @@
 	rel="stylesheet">
 
 <!-- Styles -->
-<link href="assets/css/far.min.css" rel="stylesheet">
+<link href="assets/css/far.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -32,7 +32,7 @@
 		String nombre = loggedUser.getNombre();
 		String iniciales = "";
 		for (String n : nombre.split(" ")) {
-			iniciales += n.charAt(0);
+			if (iniciales.length() < 2)	iniciales += n.charAt(0);
 		}
 %>
 	<!-- Wrapper de la pagina -->
@@ -45,7 +45,7 @@
 				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="index.jsp">
 				<div class="sidebar-brand-icon">
-					<img style="max-width: 50px;" src="assets/img/logo.png">
+					<img style="max-width: 50px; -webkit-transform: rotate(45deg);" src="assets/img/logo.png">
 				</div>
 				<div class="sidebar-brand-text mx-3">FAR</div>
 			</a>
