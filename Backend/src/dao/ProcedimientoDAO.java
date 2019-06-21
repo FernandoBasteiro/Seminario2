@@ -52,4 +52,20 @@ public class ProcedimientoDAO {
 		ProcedimientoEntity pe = (ProcedimientoEntity) q.uniqueResult();
 		return this.toNegocio(pe);
 	}
+
+	public Integer crear(Procedimiento p) {
+		ProcedimientoEntity pe = new ProcedimientoEntity();
+		pe.setDescripcion(p.getDescripcion());
+		pe.setUrl(p.getUrl());
+		pe.setDuracion(p.getDuracion());
+		pe.setEsPromo(p.getEsPromo());
+		pe.setCantCalif(p.getCantCalif());
+		pe.setSumaCalif(p.getSumaCalif());
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		session.beginTransaction();
+		Integer numero = (Integer)session.save(pe);
+		session.getTransaction().commit();
+		session.close();
+		return numero;	}
 }

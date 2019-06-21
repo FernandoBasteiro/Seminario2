@@ -172,3 +172,32 @@ function agregarProcedimientos(procsStr) {
 	$("#sumaHoras").val(suma);
 	semaforoHoras(suma);
 }
+
+function nuevoProc(metaId) {
+	$("#urlProcMeta"+metaId).removeClass("is-invalid");
+	$("#duracionProcMeta"+metaId).removeClass("is-invalid");
+	error = false;
+	nombre = $("#nombreProcMeta"+metaId).val();
+	if (nombre == "") {
+		error = true;
+		$("#nombreProcMeta"+metaId).addClass("is-invalid");
+	}
+	else $("#nombreProcMeta"+metaId).remove("is-invalid");
+	url = $("#urlProcMeta"+metaId).val();
+	if (url == "") {
+		error = true;
+		$("#urlProcMeta"+metaId).addClass("is-invalid");
+	}
+	else $("#urlProcMeta"+metaId).remove("is-invalid");
+	var duracion = $("#duracionProcMeta"+metaId).val();
+	if (duracion < 1 || duracion > 250) {
+		error = true;
+		$("#duracionProcMeta"+metaId).addClass("is-invalid");
+	}
+	else $("#duracionProcMeta"+metaId).remove("is-invalid");
+	if (! error) {
+		$("#metasModal"+metaId).modal("toggle");
+		postStr = "action=crearProcedimiento&metaId="+metaId+"&nombre="+nombre+"&url="+url+"&duracion="+duracion;
+		loadDiv('contenedor-principal','Servlet',postStr, 'Mis metas')
+	}
+}

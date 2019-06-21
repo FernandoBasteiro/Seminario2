@@ -32,4 +32,6 @@ public interface InterfaceRemota extends Remote {
 	public UsuarioDTO listarPerfil(UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 
 	public Boolean existeUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException;
+
+	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws RemoteException, ComunicacionException, LoggedInException;
 }

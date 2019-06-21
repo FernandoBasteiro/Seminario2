@@ -8,6 +8,7 @@ import controladores.AdministrarMetas;
 import controladores.AdministrarProcedimientos;
 import controladores.AdministrarUsuarios;
 import dto.MetasDTO;
+import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
@@ -62,5 +63,10 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 	
 	public Boolean existeUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException {
 		return AdministrarUsuarios.getInstancia().existeUsuario(usuario);
+	}
+
+	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc)
+			throws RemoteException, ComunicacionException, LoggedInException {
+		AdministrarProcedimientos.getInstancia().crearProcedimiento(usuario, meta, proc);
 	}
 }

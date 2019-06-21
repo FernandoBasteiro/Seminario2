@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dto.MetasDTO;
+import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.TagMetaDTO;
 import dto.UsuarioDTO;
@@ -169,5 +170,13 @@ public class BusinessDelegate {
 			tags.add(tag);
 		}
 		return tags;
+	}
+
+	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws ComunicacionException, LoggedInException {
+		try {
+			ir.crearProcedimiento(usuario, meta, proc);
+		} catch (RemoteException e) {
+			throw new ComunicacionException("Error en las comunicaciones");	
+		}
 	}
 }

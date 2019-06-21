@@ -1,6 +1,9 @@
 package negocio;
 
+import dao.MetasDAO;
+import dao.ProcedimientoDAO;
 import dto.ProcedimientoDTO;
+import excepciones.ComunicacionException;
 
 public class Procedimiento {
 	private int id;
@@ -89,5 +92,27 @@ public class Procedimiento {
 	public void setEsPromo(Boolean esPromo) {
 		this.esPromo = esPromo;
 	}
-		
+
+	public Integer getCantCalif() {
+		return cantCalif;
+	}
+
+	public void setCantCalif(Integer cantCalif) {
+		this.cantCalif = cantCalif;
+	}
+
+	public Integer getSumaCalif() {
+		return sumaCalif;
+	}
+
+	public void setSumaCalif(Integer sumaCalif) {
+		this.sumaCalif = sumaCalif;
+	}
+
+	public void crear() throws ComunicacionException {
+		Integer id = ProcedimientoDAO.getInstancia().crear(this);
+		if (id != null) this.id = id;
+		else throw new ComunicacionException("Hubo un error al generar el procedimiento");
+	}
+	
 }

@@ -157,6 +157,31 @@ public class Servlet extends HttpServlet {
 					request.setAttribute("metas", metas);
 					jspPage = "verMetas.jsp";
 				}
+			} else if ("crearProcedimiento".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					String descripcion = request.getParameter("nombre");
+					String url = request.getParameter("url");
+					String duracionStr = request.getParameter("duracion");
+					String metaIdStr = request.getParameter("metaId");
+					if (descripcion != null && url != null && duracionStr != null && metaIdStr != null) {
+						try {
+							Integer duracion = Integer.valueOf(duracionStr);
+							Integer metaId = Integer.valueOf(metaIdStr);
+							MetasDTO meta = new MetasDTO();
+							meta.setId(metaId);
+							ProcedimientoDTO proc = new ProcedimientoDTO(descripcion, url, duracion);
+							bd.crearProcedimiento(uDTO, meta, proc);
+							
+						} catch (Exception e) {
+							request.setAttribute("errorCP", e.getMessage());
+						}
+						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
+						request.setAttribute("metas", metas);
+						jspPage = "verMetas.jsp";
+					}
+				}
 			}
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";

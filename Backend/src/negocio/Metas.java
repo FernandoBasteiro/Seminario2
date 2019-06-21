@@ -159,6 +159,10 @@ public class Metas {
 		else throw new ComunicacionException("Hubo un error al generar una nueva meta");
 	}
 	
+	public void guardar() {
+		MetasDAO.getInstancia().grabar(this);
+	}
+	
 	public MetasDTO toDTO() {
 		ArrayList<ProcedimientoDTO> procedimiento  =new ArrayList<ProcedimientoDTO>();
 		for(Procedimiento p : this.getProcedimientos()) {

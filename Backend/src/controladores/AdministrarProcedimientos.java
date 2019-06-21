@@ -81,4 +81,14 @@ public class AdministrarProcedimientos {
 		}
 		return procs;
 	}
+
+	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws LoggedInException, ComunicacionException {
+		if (AdministrarUsuarios.getInstancia().isLoggedIn(usuario)) {
+			Metas m = MetasDAO.getInstancia().getMetaById(meta.getId());
+			Procedimiento p = new Procedimiento(proc.getDescripcion(), proc.getUrl(), proc.getDuracion());
+			p.crear();
+			m.getProcedimientos().add(p);
+			m.guardar();
+		}
+	}
 }

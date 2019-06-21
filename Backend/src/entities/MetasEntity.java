@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class MetasEntity {
 	private String varAccion;
 	private String varSujeto; 
 	private String varNivel;
-	@ManyToMany
+	@ManyToMany (cascade = CascadeType.ALL)
 	private List<ProcedimientoEntity> procedimientos;
 	private String user;
 

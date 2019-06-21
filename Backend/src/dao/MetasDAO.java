@@ -29,6 +29,20 @@ public class MetasDAO {
 	
 	public void grabar(Metas m) {
 		MetasEntity me = new MetasEntity(m.getDescripcion(), m.isCompleta(), m.getVarAccion(), m.getVarSujeto(), m.getVarNivel(), m.getUser());
+		me.setId(m.getId());
+		ArrayList<ProcedimientoEntity> pes = new ArrayList<ProcedimientoEntity>();
+		for (Procedimiento p : m.getProcedimientos()) {
+			ProcedimientoEntity pe = new ProcedimientoEntity();
+			if (p.getId() != 0)	pe.setId(p.getId());
+			pe.setDescripcion(p.getDescripcion());
+			pe.setDuracion(p.getDuracion());
+			pe.setSumaCalif(p.getSumaCalif());
+			pe.setCantCalif(p.getCantCalif());
+			pe.setEsPromo(p.getEsPromo());
+			pe.setUrl(p.getUrl());
+			pes.add(pe);
+		}
+		me.setProcedimientos(pes);
 		SessionFactory sf = HibernateUtil.getSessionFactory();
 		Session session = sf.openSession();
 		session.beginTransaction();
@@ -43,9 +57,6 @@ public class MetasDAO {
 		for (Procedimiento p : m.getProcedimientos()) {
 			ProcedimientoEntity pe = new ProcedimientoEntity();
 			pe.setId(p.getId());
-			pe.setDescripcion(p.getDescripcion());
-			pe.setUrl(p.getUrl());
-			pe.setDuracion(p.getDuracion());
 			procedimientos.add(pe);
 		}
 		me.setProcedimientos(procedimientos);
@@ -57,13 +68,6 @@ public class MetasDAO {
 		session.close();
 		return numero;
 	}
-	private String descripcion;
-	private boolean completa;
-	private String varAccion;
-	private String varSujeto; 
-	private String varNivel;
-	private ArrayList<Procedimiento> procedimientos;
-	private String user;
 	
 	public Metas toNegocio(MetasEntity me) {
 		Metas m = new Metas(me.getId());
@@ -102,6 +106,19 @@ public class MetasDAO {
 		MetasEntity me = (MetasEntity) session.createQuery("from MetasEntity where user = ? and descripcion = ?")
 				.setParameter(0, user)
 				.setParameter(1, meta)
+				.uniqueResult();
+		if (me != null) {
+			metaF = MetasDAO.getInstancia().toNegocio(me);
+		}
+		return metaF;
+	}
+
+	public Metas getMetaById(Integer id) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		Metas metaF = null;
+		MetasEntity me = (MetasEntity) session.createQuery("from MetasEntity where id = ?")
+				.setParameter(0, id)
 				.uniqueResult();
 		if (me != null) {
 			metaF = MetasDAO.getInstancia().toNegocio(me);
