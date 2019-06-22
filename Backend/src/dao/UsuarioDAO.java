@@ -108,11 +108,12 @@ private static UsuarioDAO instancia;
 			else return false;
 		}
 		
-		public ArrayList<Usuario> getUsuaruiByPerfil(String ubicacion) throws ComunicacionException {
+		public ArrayList<Usuario> getUsuarioByPerfil(String ubicacion) throws ComunicacionException {
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session session = sf.openSession();
 			Query q = session.createQuery("from UsuarioEntity where varUbicacion = ?");
 			q.setParameter(0, ubicacion);
+			q = session.createQuery("from UsuarioEntity");
 			@SuppressWarnings("unchecked")
 			ArrayList<UsuarioEntity> uen = (ArrayList<UsuarioEntity>) q.list();
 			

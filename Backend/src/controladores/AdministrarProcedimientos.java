@@ -10,6 +10,7 @@ import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.joda.time.LocalDate;
 
 import dao.MetasDAO;
 import dao.ProcedimientoDAO;
@@ -43,16 +44,19 @@ public class AdministrarProcedimientos {
 		ArrayList<MetasDTO> mDTO = new ArrayList<MetasDTO>();
 		
 		ArrayList<Usuario> uList = new ArrayList<Usuario>();
-		uList = UsuarioDAO.getInstancia().getUsuaruiByPerfil(usuario.getVarUbicacion());
+		uList = UsuarioDAO.getInstancia().getUsuarioByPerfil(usuario.getVarUbicacion());
 		for (Usuario u : uList) {
-			ArrayList<Metas> mList = new ArrayList<Metas>();
-			mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
-			for(Metas m : mList) {
-				if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
-					mDTO.add(m.toDTO());
-					for(Procedimiento p : m.getProcedimientos()) {
-						if (p.getEsPromo()) rps.add(p);
-						else ps.add(p);	
+			LocalDate fNac = ConversorFechas.convertJavaToJoda(usuario.getVarFechaNac());
+			if (Math.abs(fNac.getYear() - u.getVarFechaNac().getYear()) <= 5) {
+				ArrayList<Metas> mList = new ArrayList<Metas>();
+				mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
+				for(Metas m : mList) {
+					if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
+						mDTO.add(m.toDTO());
+						for(Procedimiento p : m.getProcedimientos()) {
+							if (p.getEsPromo()) rps.add(p);
+							else ps.add(p);	
+						}
 					}
 				}
 			}

@@ -8,6 +8,7 @@
 ArrayList<String> provincias = new ArrayList<String>();
 provincias.add("Buenos Aires");
 provincias.add("CABA");
+/*
 provincias.add("Catamarca");
 provincias.add("Chaco");
 provincias.add("Chubut");
@@ -29,7 +30,7 @@ provincias.add("Santa Fe");
 provincias.add("Santiago del Estero");
 provincias.add("Tierra del Fuego");
 provincias.add("Tucumán");
-
+*/
 %>
 
 
