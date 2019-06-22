@@ -111,16 +111,20 @@
 				<!-- Fin de la barra superior -->
 				<!-- Contenido de la pagina -->
 				<h5 id="titulo-pagina-chica" class="m-4 titulo-chico">Inicio</h5>
-				<div class="container-fluid" id="contenedor-principal">
-					<h1 class="h3 mb-4 text-gray-800">
+				<div class="container-fluid" id="contenedor-principal" align="center">
 						<%
 							if (request.getParameter("error") == null) {
-								out.print("Página principal...");
+						%>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/qe8HGJYFcMw?controls=0&disablekb=1&modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; ></iframe>
+						<%
 							} else if (request.getParameter("error").equals("404")) {
-								out.print("Llegaste demasiado lejos... error 404.");
+						%>
+						<h1 class="h3 mb-4 text-gray-800">
+						Llegaste demasiado lejos... error 404.
+						</h1>
+						<%
 							}
 						%>
-					</h1>
 				</div>
 				<!-- Fin del contenido de la pagina -->
 			</div>
