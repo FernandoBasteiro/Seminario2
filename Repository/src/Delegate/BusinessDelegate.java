@@ -86,7 +86,7 @@ public class BusinessDelegate {
 	
 	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException {
 		try {
-			return ir.listarMetas(usuario);
+			return ir.listarMetasActivas(usuario);
 		} catch (RemoteException e) {
 			throw new ComunicacionException("Error en las comunicaciones");	
 		}
@@ -175,6 +175,14 @@ public class BusinessDelegate {
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws ComunicacionException, LoggedInException {
 		try {
 			ir.crearProcedimiento(usuario, meta, proc);
+		} catch (RemoteException e) {
+			throw new ComunicacionException("Error en las comunicaciones");	
+		}
+	}
+
+	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
+		try {
+			ir.cerrarMeta(usuario, meta);
 		} catch (RemoteException e) {
 			throw new ComunicacionException("Error en las comunicaciones");	
 		}

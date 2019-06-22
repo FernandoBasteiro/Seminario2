@@ -40,10 +40,32 @@ public class AdministrarMetas {
 		m.crear();
 	}
 	
-	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException{
+	public ArrayList<MetasDTO> listarMetasActivas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException{
+		ArrayList<MetasDTO> msDTO = new ArrayList<MetasDTO>();
+		for (Metas m : MetasDAO.getInstancia().getListadoMetasActivasByUsuario(usuario.getLogin())) msDTO.add(m.toDTO());
+		return msDTO;
+	}
+
+	public ArrayList<MetasDTO> listarMetasTodas (UsuarioDTO usuario) throws ComunicacionException, LoggedInException{
 		ArrayList<MetasDTO> msDTO = new ArrayList<MetasDTO>();
 		for (Metas m : MetasDAO.getInstancia().getListadoMetasByUsuario(usuario.getLogin())) msDTO.add(m.toDTO());
 		return msDTO;
+	}
+
+	public void cerrarMeta(UsuarioDTO usuario, MetasDTO metaDTO) throws ComunicacionException, LoggedInException {
+		if (AdministrarUsuarios.getInstancia().isLoggedIn(usuario)) {
+			Metas meta = MetasDAO.getInstancia().getMetaById(metaDTO.getId());
+			for (Procedimiento p : meta.getProcedimientos()) {
+				for (ProcedimientoDTO pDTO : metaDTO.getProcedimientos()) {
+					if (p.getId() == pDTO.getId()) {
+						p.calificar(Math.round(pDTO.getCalificacion()));
+						p.guardar();
+					}
+				}
+			}
+			meta.setCompleta(true);
+			meta.guardar();
+		}
 	}
 
 	

@@ -45,8 +45,8 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 		AdministrarMetas.getInstancia().altaMeta(usuario, meta);
 	}
 	
-	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException{
-		return AdministrarMetas.getInstancia().listarMetas(usuario);
+	public ArrayList<MetasDTO> listarMetasActivas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException{
+		return AdministrarMetas.getInstancia().listarMetasActivas(usuario);
 	}
 	
 	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException{
@@ -68,5 +68,11 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc)
 			throws RemoteException, ComunicacionException, LoggedInException {
 		AdministrarProcedimientos.getInstancia().crearProcedimiento(usuario, meta, proc);
+	}
+
+	@Override
+	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta)
+			throws RemoteException, ComunicacionException, LoggedInException {
+		AdministrarMetas.getInstancia().cerrarMeta(usuario, meta);
 	}
 }

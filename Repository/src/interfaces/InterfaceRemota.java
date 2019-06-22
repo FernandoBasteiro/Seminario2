@@ -23,7 +23,7 @@ public interface InterfaceRemota extends Remote {
 	
 	public void altaMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException;
 	
-	public ArrayList<MetasDTO> listarMetas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
+	public ArrayList<MetasDTO> listarMetasActivas (UsuarioDTO usuario) throws RemoteException, ComunicacionException, LoggedInException;
 	
 	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException; 
 	
@@ -34,4 +34,6 @@ public interface InterfaceRemota extends Remote {
 	public Boolean existeUsuario(UsuarioDTO usuario) throws RemoteException, ComunicacionException;
 
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws RemoteException, ComunicacionException, LoggedInException;
+
+	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException;
 }

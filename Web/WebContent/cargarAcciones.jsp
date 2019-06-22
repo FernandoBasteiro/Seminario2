@@ -52,7 +52,8 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 				<% for (ProcedimientoDTO p : rec.getPromoProcs()) { %>
 				<tr onClick="sumarHoras2($(this), <%=p.getDuracion() %>)"
 					id=<%=p.getId() %> class="row-selected"
-					duracion=<%=p.getDuracion() %>>
+					duracion=<%=p.getDuracion() %> data-toggle="popover" data-placement="top" data-trigger="hover" data-content="<%=p.getUrl()%>">
+					
 					<!-- <tr> onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">  -->
 					<!-- <td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td> -->
 					<td><%=p.getDescripcion() %></td>
@@ -62,7 +63,7 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 				<% } %>
 				<% for (ProcedimientoDTO p : rec.getNormalProcs()) { %>
 				<tr onClick="sumarHoras2($(this), <%=p.getDuracion() %>)"
-					id=<%=p.getId() %> duracion=<%=p.getDuracion() %>>
+					id=<%=p.getId() %> duracion=<%=p.getDuracion() %> data-toggle="popover" data-placement="top" data-trigger="hover" data-content="<%=p.getUrl()%>">
 					<!-- <tr> onclick="$('#<%=p.getId() %>').prop('checked', !$('#<%=p.getId() %>').prop('checked'))">  -->
 					<!-- <td><input type="checkbox" value="" id=<%=p.getId() %> onClick="sumarHoras($(this), <%=p.getDuracion() %>)"></td> -->
 					<td><%=p.getDescripcion()%></td>

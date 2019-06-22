@@ -1,10 +1,15 @@
 package dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.hql.ast.tree.SessionFactoryAwareNode;
+import org.hibernate.stat.Statistics;
 
 import controladores.HibernateUtil;
 import entities.MetasEntity;
@@ -51,8 +56,8 @@ private static UsuarioDAO instancia;
 			SessionFactory sf = HibernateUtil.getSessionFactory();
 			Session session = sf.openSession();
 			UsuarioEntity ue = (UsuarioEntity) session.createQuery("from UsuarioEntity where login = ?")
-					.setParameter(0, u.getLogin())
-					.uniqueResult();
+						.setParameter(0, u.getLogin())
+						.uniqueResult();				
 			if (ue != null) {
 				u.setId(ue.getId());
 				u.setLogin(ue.getLogin());
@@ -66,6 +71,7 @@ private static UsuarioDAO instancia;
 				u.setVarFechaNac(ue.getVarFechaNac());
 			}
 			else throw new ComunicacionException("El jugador solicitado no existe");
+			session.close();			
 		}
 		
 		public Usuario toNegocio(UsuarioEntity u) {
@@ -86,7 +92,9 @@ private static UsuarioDAO instancia;
 			UsuarioEntity ue = (UsuarioEntity) session.createQuery("from UsuarioEntity where login = ?")
 					.setParameter(0, login)
 					.uniqueResult();
+			session.close();
 			if (ue != null) return ue;
+
 			else throw new ComunicacionException("El usuario solicitado no existe");
 		}
 		

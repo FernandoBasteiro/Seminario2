@@ -2,7 +2,7 @@ package dto;
 
 import java.io.Serializable;
 
-public class ProcedimientoDTO implements Serializable{
+public class ProcedimientoDTO implements Serializable, Comparable{
 	private static final long serialVersionUID = -3494073997821404572L;
 	private int id;
 	private String descripcion;
@@ -68,7 +68,11 @@ public class ProcedimientoDTO implements Serializable{
 	public void setEsPromo(Boolean esPromo) {
 		this.esPromo = esPromo;
 	}
-	
-	
 
+	public int compareTo(Object p) {
+		if (this.calificacion > ((ProcedimientoDTO) p).getCalificacion()) return -1;
+		else if (this.calificacion < ((ProcedimientoDTO) p).getCalificacion()) return 1;
+		else return 0;
+	}
+	
 }

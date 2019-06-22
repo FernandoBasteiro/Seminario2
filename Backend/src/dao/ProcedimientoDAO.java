@@ -67,5 +67,23 @@ public class ProcedimientoDAO {
 		Integer numero = (Integer)session.save(pe);
 		session.getTransaction().commit();
 		session.close();
-		return numero;	}
+		return numero;	
+	}
+
+	public void guardar(Procedimiento p) {
+		ProcedimientoEntity pe = new ProcedimientoEntity();
+		pe.setId(p.getId());
+		pe.setDescripcion(p.getDescripcion());
+		pe.setUrl(p.getUrl());
+		pe.setDuracion(p.getDuracion());
+		pe.setEsPromo(p.getEsPromo());
+		pe.setCantCalif(p.getCantCalif());
+		pe.setSumaCalif(p.getSumaCalif());
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(pe);
+		session.getTransaction().commit();
+		session.close();
+	}
 }

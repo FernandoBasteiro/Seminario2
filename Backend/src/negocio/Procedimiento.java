@@ -114,5 +114,9 @@ public class Procedimiento {
 		if (id != null) this.id = id;
 		else throw new ComunicacionException("Hubo un error al generar el procedimiento");
 	}
+
+	public void guardar() {
+		ProcedimientoDAO.getInstancia().guardar(this);
+	}
 	
 }

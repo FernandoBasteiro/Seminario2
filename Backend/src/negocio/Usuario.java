@@ -1,5 +1,7 @@
 package negocio;
 
+import java.sql.SQLException;
+
 import org.joda.time.LocalDate;
 
 import dao.UsuarioDAO;

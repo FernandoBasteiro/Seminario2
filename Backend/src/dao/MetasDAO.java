@@ -125,5 +125,19 @@ public class MetasDAO {
 		}
 		return metaF;
 	}
+
+	public ArrayList<Metas> getListadoMetasActivasByUsuario(String user) {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		Query q = session.createQuery("from MetasEntity where user = ? and completa = ?");
+		q.setParameter(0, user);
+		q.setParameter(1, false);
+		@SuppressWarnings("unchecked")
+		ArrayList<MetasEntity> mes = (ArrayList<MetasEntity>) q.list();
+		
+		ArrayList<Metas> ms = new ArrayList<Metas>();
+		for (MetasEntity me : mes) ms.add(MetasDAO.getInstancia().toNegocio(me));
+		return ms;
+	}
 	
 }

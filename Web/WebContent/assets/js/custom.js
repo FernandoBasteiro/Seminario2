@@ -11,7 +11,8 @@
 			document.getElementById(divName).innerHTML = this.responseText;
 			document.getElementById("titulo-pagina").innerHTML  = titulo;
 			document.getElementById("titulo-pagina-chica").innerHTML  = titulo;
-			}
+			$('[data-toggle="popover"]').popover();
+		}
 		else if (this.readyState == 4 && this.status == 401) {window.location.href = "/Web/login.jsp";}};
 	    xmlhttp.open("POST", url, true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=utf-8");
@@ -196,8 +197,31 @@ function nuevoProc(metaId) {
 	}
 	else $("#duracionProcMeta"+metaId).remove("is-invalid");
 	if (! error) {
-		$("#metasModal"+metaId).modal("toggle");
+		$("#procModal"+metaId).modal("toggle");
 		postStr = "action=crearProcedimiento&metaId="+metaId+"&nombre="+nombre+"&url="+url+"&duracion="+duracion;
 		loadDiv('contenedor-principal','Servlet',postStr, 'Mis metas')
+	}
+}
+
+function cerrarMeta(metaId) {
+	var cantProcs = $("#cantProcsMeta"+metaId).val();
+	idsProcs = "";
+	caliProcs = "";
+	error = false;
+	for (i=1;i<=cantProcs;i++) {
+		idsProcs = idsProcs + "&idProcs=" + $("#proc"+i+"Meta"+metaId).val();
+		calProc = $("#calMeta"+metaId+"Proc"+i).val();
+		if (calProc == "" || parseInt(calProc) < 1 || parseInt(calProc) > 10) {
+			error = true;
+			$("#calMeta"+metaId+"Proc"+i).addClass("is-invalid");
+		}
+		else $("#calMeta"+metaId+"Proc"+i).removeClass("is-invalid");
+		caliProcs = caliProcs + "&caliProcs=" + $("#calMeta"+metaId+"Proc"+i).val();
+	}
+	if (error) $("#mensajeError"+metaId).removeClass("desaparecer");
+	else {
+		$("#metaModal"+metaId).modal("toggle");
+		postStr = "action=cerrarMeta&metaId=" + metaId + idsProcs + caliProcs;
+		loadDiv("contenedor-principal","Servlet",postStr,"Mis metas");
 	}
 }

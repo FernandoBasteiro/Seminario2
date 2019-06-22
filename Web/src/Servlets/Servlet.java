@@ -175,12 +175,41 @@ public class Servlet extends HttpServlet {
 							bd.crearProcedimiento(uDTO, meta, proc);
 							
 						} catch (Exception e) {
-							request.setAttribute("errorCP", e.getMessage());
+							request.setAttribute("error", e.getMessage());
 						}
 						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
 						request.setAttribute("metas", metas);
 						jspPage = "verMetas.jsp";
 					}
+				}
+			} else if ("cerrarMeta".equals(action)) {
+				HttpSession session = request.getSession();
+				UsuarioDTO uDTO = (UsuarioDTO) session.getAttribute("loggedUsr");
+				if (uDTO != null) {
+					String metaIdStr = request.getParameter("metaId");
+					String[] procsStr = request.getParameterValues("idProcs");
+					String[] calisStr = request.getParameterValues("caliProcs");
+					if (metaIdStr != null && procsStr != null && calisStr != null) {
+						try {
+							Integer metaId = Integer.valueOf(metaIdStr);
+							MetasDTO meta = new MetasDTO();
+							meta.setId(metaId);
+							ArrayList<ProcedimientoDTO> procs = new ArrayList<ProcedimientoDTO>();
+							for (int i=0; i<procsStr.length; i++) {
+								ProcedimientoDTO p = new ProcedimientoDTO(Integer.valueOf(procsStr[i]));
+								p.setCalificacion(Float.valueOf(calisStr[i]));
+								procs.add(p);
+							}
+							meta.setProcedimientos(procs);
+							bd.cerrarMeta(uDTO, meta);
+						} catch (Exception e) {
+							request.setAttribute("error", e.getMessage());
+						}
+						ArrayList<MetasDTO> metas = bd.listarMetas(uDTO);
+						request.setAttribute("metas", metas);
+						jspPage = "verMetas.jsp";
+					}
+					
 				}
 			}
 		} catch (ComunicacionException e) {

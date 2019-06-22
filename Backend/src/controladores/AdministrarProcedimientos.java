@@ -1,6 +1,7 @@
 package controladores;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -37,8 +38,8 @@ public class AdministrarProcedimientos {
 	}
 
 	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
-		ArrayList<ProcedimientoDTO> psDTO = new ArrayList<ProcedimientoDTO>();
-		ArrayList<ProcedimientoDTO> rpsDTO = new ArrayList<ProcedimientoDTO>();
+		ArrayList<Procedimiento> ps = new ArrayList<Procedimiento>();
+		ArrayList<Procedimiento> rps = new ArrayList<Procedimiento>();
 		ArrayList<MetasDTO> mDTO = new ArrayList<MetasDTO>();
 		
 		ArrayList<Usuario> uList = new ArrayList<Usuario>();
@@ -50,13 +51,15 @@ public class AdministrarProcedimientos {
 				if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
 					mDTO.add(m.toDTO());
 					for(Procedimiento p : m.getProcedimientos()) {
-						if (p.getEsPromo()) rpsDTO.add(p.toDTO());
-						else psDTO.add(p.toDTO());	
+						if (p.getEsPromo()) rps.add(p);
+						else ps.add(p);	
 					}
 				}
 			}
 		}
-		RecomendacionesDTO rec = new RecomendacionesDTO(ordenarSinDups(rpsDTO), sumaHoras(rpsDTO), ordenarSinDups(psDTO), mDTO);
+		ArrayList<ProcedimientoDTO> rpsDTO = ordenarSinDups(rps);
+		ArrayList<ProcedimientoDTO> psDTO = ordenarSinDups(ps);
+		RecomendacionesDTO rec = new RecomendacionesDTO(rpsDTO, sumaHoras(rpsDTO), psDTO, mDTO);
 		return rec;
 	}
 	
@@ -66,20 +69,23 @@ public class AdministrarProcedimientos {
 		return suma;
 	}
 	
-	private ArrayList<ProcedimientoDTO> ordenarSinDups(ArrayList<ProcedimientoDTO> procs) {
+	private ArrayList<ProcedimientoDTO> ordenarSinDups(ArrayList<Procedimiento> procs) {
+		ArrayList<ProcedimientoDTO> procsDTO = new ArrayList<ProcedimientoDTO>();
 		int i = 0;
 		while (i < procs.size()) {
-			for (int j = procs.size()-1; j > i; j--) {
+			for (int j = procs.size() - 1; j > i; j--) {
 				if (procs.get(j).getId() == procs.get(i).getId()) procs.remove(j);
-				else if (procs.get(j).getCalificacion() > procs.get(i).getCalificacion()) {
-					ProcedimientoDTO aux = procs.get(i);
-					procs.set(i, procs.get(j));
-					procs.set(j, aux);
+				else if (procs.get(i).getUrl().equals(procs.get(j).getUrl())) {
+					procs.get(i).setCantCalif(procs.get(i).getCantCalif() + procs.get(j).getCantCalif());
+					procs.get(i).setSumaCalif(procs.get(i).getSumaCalif() + procs.get(j).getSumaCalif());
+					procs.remove(j);
 				}
 			}
+			procsDTO.add(procs.get(i).toDTO());
 			i++;
 		}
-		return procs;
+		Collections.sort(procsDTO);
+		return procsDTO;
 	}
 
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws LoggedInException, ComunicacionException {
