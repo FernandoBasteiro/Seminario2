@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.joda.time.LocalDate;
 
+import controladores.ConversorFechas;
 import dao.UsuarioDAO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
@@ -149,7 +150,9 @@ public class Usuario {
 	}
 
 	public UsuarioDTO toDTO() {
-		return new UsuarioDTO(this.id, this.login, null, this.nombre, this.token, this.varUbicacion, this.varDispHoraria, this.varNivel, this.activo);
+		UsuarioDTO uDTO = new UsuarioDTO(this.id, this.login, null, this.nombre, this.token, this.varUbicacion, this.varDispHoraria, this.varNivel, this.activo);
+		uDTO.setVarFechaNac(ConversorFechas.convertJodaToJava(this.varFechaNac));
+		return uDTO;
 	}
 	
 }

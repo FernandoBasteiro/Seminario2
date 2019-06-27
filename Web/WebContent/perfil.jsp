@@ -53,13 +53,13 @@ String error = (String) request.getAttribute("error");
 				<h6 class="errores" id="faltaPerfil">Para crear una meta, primero tenes que definir tu perfil.</h6>
 				<input type="hidden" id="crearMeta" value="true">
 				<% } %>
-				<label for="fechaNacimiento">Fecha de nacimiento</label>
+				<label for="fechaNacimiento">¿Cuando naciste?</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>
 				<h6 class="errores desaparecer" id="errorEdad">La edad debe estar entre 18 y 100 años</h6>
-				<label for="disponibilidad">Disponibilidad (Horas)</label> <input
+				<label for="disponibilidad">¿Cuantas horas por mes vas a dedicarle a cumplir tus metas?</label> <input
 					type="number" class="form-control mb-3" id="disponibilidad" min=1 max=250 value=<%=usuario.getVarDispHoraria() %>>
 				<h6 class="errores desaparecer" id="errorDispo">La disponibilidad debe estar entre 1 y 250 horas.</h6>
-				<label for="ubicacion">Ubicación</label> <select class="custom-select mb-3"
+				<label for="ubicacion">¿Donde vivis?</label> <select class="custom-select mb-3"
 					id="ubicacion" data-live-search="true" value=<% if (usuario.getVarUbicacion() != null) out.print(usuario.getVarUbicacion()); %>>
 					<option value="" disabled <% if (usuario.getVarUbicacion() == null) {out.print("selected");} %>>Ubicación</option>
 					<% for (int i = 0; i < provincias.size(); i++) { %>

@@ -102,12 +102,12 @@ function cargarPerfil() {
 	}
 	if (! error) {
 		if ($("#crearMeta").length > 0) {
-			crearMeta = "&crearMeta=true";
+			crearMetas = "&crearMeta=true";
 		}
 		else {
-			crearMeta = "";
+			crearMetas = "";
 		}
-		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text()+crearMeta, 'Modificar perfil');
+		loadDiv('contenedor-principal','Servlet','action=modificarPerfil&fechaNac='+$('#fechaNacimiento').val()+'&dispHoraria='+dispo+'&ubicacion='+$('#ubicacion option:selected').text()+crearMetas, 'Modificar perfil');
 	}
 }
 
