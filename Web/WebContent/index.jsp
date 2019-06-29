@@ -59,7 +59,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item"
-							onclick="loadDiv('contenedor-principal','Servlet','action=cargarMeta', 'Cargar nueva meta')">Cargar
+							onclick="loadDiv('contenedor-principal','Servlet','action=cargarMeta', 'Cargar nueva meta')">Crear
 							nueva meta</a> <a class="collapse-item"
 							onclick="loadDiv('contenedor-principal','Servlet','action=listarMetas', 'Mis metas')">Ver
 							mis metas</a>

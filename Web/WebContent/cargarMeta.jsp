@@ -17,8 +17,8 @@
 		<div class="card-body m-1 my-2 mb-0">
 			<div class="col-md-12">
 				<div class="form-group row">
-					<input type="text" class="form-control" id="meta"
-						placeholder="Contanos cual es tu meta">
+					<label for="accion" class="col-lg-5 my-2">Contanos cual es tu meta:</label>
+					<input type="text" class="form-control col-lg-7" id="meta">
 				</div>
 				<div class="form-group row">
 					<label for="accion" class="col-lg-5 my-2">¿De que tipo es
@@ -74,8 +74,7 @@
 		<div class="col-auto mb-4" align="center">
 			<h6 class="errores desaparecer" id="mensajeError">Todos los
 				campos son obligatorios.</h6>
-			<button onclick="listarAcciones()" class="btn btn-primary">Cargar
-				Meta</button>
+			<button onclick="listarAcciones()" class="btn btn-primary">Obtener recomendaciones</button>
 		</div>
 	</div>
 </body>

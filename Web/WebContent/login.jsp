@@ -41,7 +41,7 @@
 							<div class="col-md-8">
 								<div class="p-4">
 									<div class="text-center">
-										<h1 class="h4 text-gray-900 mb-4">Volviste, ¡Bienvenido!</h1>
+										<h1 class="h4 text-gray-900 mb-4">¿Volviste? ¡Bienvenido!</h1>
 									</div>
 									<form class="user" action="Servlet" method="post"
 										autocomplete="off">
@@ -60,7 +60,20 @@
 										<%
 											}
 										%>
+										<%
+											String confir = (String) request.getAttribute("success");
+											if (confir == null) {
+												confir = request.getParameter("success");
+											}
 
+											if (confir != null && !confir.equals("null")) {
+										%>
+										<div class="form-group">
+											<h6 class="confirmacion" id="conf"><%=confir%></h6>
+										</div>
+										<%
+											}
+										%>
 										<div class="form-group">
 											<input type="input" class="form-control form-control-user"
 												name="usuario" aria-describedby="emailHelp"
@@ -71,11 +84,12 @@
 												name="password" placeholder="Contraseña" required>
 										</div>
 										<input type="submit"
-											class="btn btn-primary btn-user btn-block" value="Ingresar" />
+											class="btn btn-primary btn-user btn-block" style="font-size: 1rem" value="Ingresar" />
 									</form>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="register.jsp">¿Queres registrarte?</a>
+										<h1 class="h4 text-gray-900 mb-2">¿Sos nuevo?</h1>
+										<a class="btn btn-primary btn-user btn-block" style="border-radius: 10rem; font-size: 0.8rem" role="button" href="register.jsp">Registrate acá</a>
 									</div>
 								</div>
 							</div>

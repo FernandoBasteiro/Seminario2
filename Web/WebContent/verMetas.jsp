@@ -32,39 +32,66 @@
 		<div
 			class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary"><%=meta.getDescripcion()%></br>
-				<span class="badge badge-primary"><%=meta.getVarAccion()%></span> <span
-					class="badge badge-primary"><%=meta.getVarSujeto()%></span> <span
-					class="badge badge-primary"><%=meta.getVarNivel()%></span>
+				<span class="badge badge-secondary"><%=meta.getVarAccion()%></span> <span
+					class="badge badge-secondary"><%=meta.getVarSujeto()%></span> <span
+					class="badge badge-secondary"><%=meta.getVarNivel()%></span>
 			</h6>
 			<div class="dropdown no-arrow">
-				<a class="dropdown-toggle" href="#" role="button"
+				<a class="nav-link dropdown-toggle" href="#" role="button"
 					id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <i
+					aria-expanded="false"> Opciones <i
 					class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
 				</a>
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in dropdown-primary"
 					aria-labelledby="dropdownMenuLink">
-					<div class="dropdown-header">Opciones:</div>
+					<!-- <div class="dropdown-header">Opciones:</div>  -->
 					<a class="dropdown-item" href="#procModal<%=meta.getId()%>"
-						data-toggle="modal">Cargar nuevo procedimiento</a> <a
+						data-toggle="modal">Agregar un nuevo procedimiento</a> <a
 						class="dropdown-item" href="#metaModal<%=meta.getId()%>" data-toggle="modal">Meta finalizada</a>
 				</div>
 			</div>
 		</div>
 		<!-- Card Body -->
 		<div class="card-body">
+			<table class="table table-hover">
+				<tr>
+					<th>Procedimiento</th><th>Duracion</th><th></th>
+				</tr>
 			<%
-				for (ProcedimientoDTO p : meta.getProcedimientos()) {
+				if (meta.getProcedimientos().size() == 0) {
 			%>
-			<a class="list-group-item list-group-item-action" data-toggle="popover" data-placement="top" data-trigger="hover" data-content="<%=p.getUrl()%>"><%=p.getDescripcion()%>
-				(<%=p.getDuracion()%> hora<%
-				if (p.getDuracion() != 1)
-							out.print("s");
-			%>)</a>
+				<tr><td colspan=3>No tenés ningún procedimiento asociado a esta meta. Podés agregar uno desde el menú opciones de esta meta.</td></tr>
 			<%
 				}
 			%>
+			<%
+				for (ProcedimientoDTO p : meta.getProcedimientos()) {
+			%>
+				<tr>
+					<td><%=p.getDescripcion()%></td>
+					<td><%=p.getDuracion()%> hora<%
+				if (p.getDuracion() != 1)
+							out.print("s");
+			%></td>
+					<td>
+					<% if (p.getUrl() != null && ! p.getUrl().isEmpty()) { 
+						String url;
+						if (p.getUrl().startsWith("http")) {
+							url = p.getUrl();
+						}
+						else {
+							url = "http://" + p.getUrl();
+						}
+					%>
+						<a class="btn btn-primary btn-user btn-block btn-sm" style="line-height: 1" role="button" href="<%=url%>" target="_blank">Link</a>
+					<% } %>
+					</td>
+				</tr>
+			<%
+				}
+			%>
+			</table>
 		</div>
 	</div>
 	<div class="modal fade" id="procModal<%=meta.getId()%>" tabindex="-1"

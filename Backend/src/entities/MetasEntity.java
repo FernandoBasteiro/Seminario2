@@ -21,7 +21,7 @@ public class MetasEntity {
 	private String varAccion;
 	private String varSujeto; 
 	private String varNivel;
-	@ManyToMany (cascade = CascadeType.MERGE)
+	@ManyToMany
 	private List<ProcedimientoEntity> procedimientos;
 	private String user;
 

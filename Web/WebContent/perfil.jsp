@@ -41,6 +41,14 @@ String error = (String) request.getAttribute("error");
 <html>
 <head>
 <meta charset="utf-8">
+<style>
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+</style>
 </head>
 <body>
 	<div class="card shadow mb-4">
@@ -56,7 +64,7 @@ String error = (String) request.getAttribute("error");
 				<label for="fechaNacimiento">¿Cuando naciste?</label>
 				<input type='date' class="form-control mb-3" id="fechaNacimiento" value="<% if (usuario.getVarFechaNac() != null) {out.print(usuario.getVarFechaNac().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));} %>"/>
 				<h6 class="errores desaparecer" id="errorEdad">La edad debe estar entre 18 y 100 años</h6>
-				<label for="disponibilidad">¿Cuantas horas por mes vas a dedicarle a cumplir tus metas?</label> <input
+				<label for="disponibilidad">¿Cuantas horas por semana vas a dedicar a cumplir tus metas?</label> <input
 					type="number" class="form-control mb-3" id="disponibilidad" min=1 max=250 value=<%=usuario.getVarDispHoraria() %>>
 				<h6 class="errores desaparecer" id="errorDispo">La disponibilidad debe estar entre 1 y 250 horas.</h6>
 				<label for="ubicacion">¿Donde vivis?</label> <select class="custom-select mb-3"

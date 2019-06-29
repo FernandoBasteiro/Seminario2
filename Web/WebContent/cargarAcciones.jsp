@@ -26,9 +26,9 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 			class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 			<h6 class="m-0 font-weight-bold text-primary">
 				<span id="desc"><%=meta.getDescripcion() %></span></br> <span
-					class="badge badge-primary" id="accion"><%=meta.getVarAccion() %></span>
-				<span class="badge badge-primary" id="sujeto"><%=meta.getVarSujeto() %></span>
-				<span class="badge badge-primary" id="nivel"><%=meta.getVarNivel() %></span>
+					class="badge badge-secondary" id="accion"><%=meta.getVarAccion() %></span>
+				<span class="badge badge-secondary" id="sujeto"><%=meta.getVarSujeto() %></span>
+				<span class="badge badge-secondary" id="nivel"><%=meta.getVarNivel() %></span>
 			</h6>
 			<a href="#" class="small my-1 mr-2" data-toggle="modal"
 				data-target="#metasModal">¿Qué hicieron otras personas?</a>
@@ -43,12 +43,22 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 		</div>
 		<div class="card-body ml-2" id="procs">
 			<table class="table table-hover">
+				<%
+					if (rec.getNormalProcs().size() == 0) {
+				%>
+				<tr colspan=3>
+					<td>Parece que nadie intento hacer esto antes. Crea tu meta vacia y cargale tus experiencias para ayudar al proximo que lo intente.</td>
+				</tr>
+				<%
+					} else {
+				%>
 				<tr>
 					<!--<th></th> -->
 					<th>Descripción</th>
 					<th>Duración</th>
 					<th>Calificación</th>
 				</tr>
+				<% } %>
 				<% for (ProcedimientoDTO p : rec.getPromoProcs()) { %>
 				<tr onClick="sumarHoras2($(this), <%=p.getDuracion() %>)"
 					id=<%=p.getId() %> class="row-selected"
@@ -80,8 +90,8 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 			<div class="col-auto my-1" align="center">
 				<h6 class="errores desaparecer" id="mensajeError">Tenés que
 					seleccionar al menos uno de los procedimientos propuestos.</h6>
-				<button onclick="crearMeta()" class="btn btn-primary">Cargar
-					acciones</button>
+				<button onclick="crearMeta()" class="btn btn-primary">Crear
+					meta</button>
 			</div>
 		</div>
 	</div>
@@ -123,7 +133,7 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 								}
 							%>
 							<a href="#" onClick="agregarProcedimientos('<%=procsStr%>')"
-								class="btn btn-primary">Agregar a mi meta</a>
+								class="btn btn-primary">Agregar estos procedimientos a mi meta</a>
 						</div>
 					</div>
 					<%

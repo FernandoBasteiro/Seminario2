@@ -20,8 +20,16 @@
 }
  
  function listarAcciones() {
+	 $('#meta').removeClass("is-invalid");
+	 $('#accion').removeClass("is-invalid");
+	 $('#sujeto').removeClass("is-invalid");
+	 $('#nivel').removeClass("is-invalid");
 	 if ($('#meta').val() === "" || $('#accion option:selected').val() === "" || $('#sujeto option:selected').val() === "" || $('#nivel option:selected').val() === "") {
 		 $("#mensajeError").removeClass("desaparecer");
+		 if ($('#meta').val() === "") $('#meta').addClass("is-invalid");
+		 if ($('#accion option:selected').val() === "") $('#accion').addClass("is-invalid");
+		 if ($('#sujeto option:selected').val() === "") $('#sujeto').addClass("is-invalid");
+		 if ($('#nivel option:selected').val() === "") $('#nivel').addClass("is-invalid");
 	 }
 	 else {
 		nombre = $('#meta').val()
