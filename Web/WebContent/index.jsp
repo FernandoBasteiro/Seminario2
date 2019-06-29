@@ -115,7 +115,8 @@
 						<%
 							if (request.getParameter("error") == null) {
 						%>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/qe8HGJYFcMw?controls=0&disablekb=1&modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" ></iframe>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/qe8HGJYFcMw?controls=0&disablekb=1&modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture;" ></iframe> -->
 						<%
 							} else if (request.getParameter("error").equals("404")) {
 						%>
