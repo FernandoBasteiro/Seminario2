@@ -47,11 +47,11 @@ public class AdministrarProcedimientos {
 		uList = UsuarioDAO.getInstancia().getUsuarioByPerfil(usuario.getVarUbicacion());
 		for (Usuario u : uList) {
 			LocalDate fNac = ConversorFechas.convertJavaToJoda(usuario.getVarFechaNac());
-			if (Math.abs(fNac.getYear() - u.getVarFechaNac().getYear()) <= 5) {
+			if (u.getVarFechaNac() != null && Math.abs(fNac.getYear() - u.getVarFechaNac().getYear()) <= 5) {
 				ArrayList<Metas> mList = new ArrayList<Metas>();
 				mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
 				for(Metas m : mList) {
-					if (meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
+					if (m.isCompleta() && meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
 						mDTO.add(m.toDTO());
 						for(Procedimiento p : m.getProcedimientos()) {
 							if (p.getEsPromo()) rps.add(p);

@@ -47,7 +47,7 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 					if (rec.getNormalProcs().size() == 0) {
 				%>
 				<tr colspan=3>
-					<td>Parece que nadie intento hacer esto antes. Crea tu meta vacia y cargale tus experiencias para ayudar al proximo que lo intente.</td>
+					<td>Parece que nadie intento hacer esto antes. Crea tu meta vacía y cargale tus experiencias para ayudar al próximo que lo intente.</td>
 				</tr>
 				<%
 					} else {
