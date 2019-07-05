@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dto.MetasDTO;
+import dto.MetasUsrDTO;
 import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.TagMetaDTO;
@@ -183,6 +184,14 @@ public class BusinessDelegate {
 	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException {
 		try {
 			ir.cerrarMeta(usuario, meta);
+		} catch (RemoteException e) {
+			throw new ComunicacionException("Error en las comunicaciones");	
+		}
+	}
+	
+	public ArrayList<MetasUsrDTO> listarTodasLasMetas() throws ComunicacionException {
+		try {
+			return ir.listarTodasLasMetas();
 		} catch (RemoteException e) {
 			throw new ComunicacionException("Error en las comunicaciones");	
 		}

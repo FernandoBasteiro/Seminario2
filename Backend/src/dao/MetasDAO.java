@@ -140,4 +140,15 @@ public class MetasDAO {
 		return ms;
 	}
 	
+	public ArrayList<Metas> listarTodasLasMetas() {
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		Query q = session.createQuery("from MetasEntity");
+		@SuppressWarnings("unchecked")
+		ArrayList<MetasEntity> mes = (ArrayList<MetasEntity>) q.list();	
+		ArrayList<Metas> ms = new ArrayList<Metas>();
+		for (MetasEntity me : mes) ms.add(MetasDAO.getInstancia().toNegocio(me));
+		return ms;
+	}
+	
 }

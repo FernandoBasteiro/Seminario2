@@ -8,6 +8,7 @@ import controladores.AdministrarMetas;
 import controladores.AdministrarProcedimientos;
 import controladores.AdministrarUsuarios;
 import dto.MetasDTO;
+import dto.MetasUsrDTO;
 import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
@@ -74,5 +75,9 @@ public class ObjetoRemoto extends UnicastRemoteObject implements InterfaceRemota
 	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta)
 			throws RemoteException, ComunicacionException, LoggedInException {
 		AdministrarMetas.getInstancia().cerrarMeta(usuario, meta);
+	}
+	
+	public ArrayList<MetasUsrDTO> listarTodasLasMetas() throws RemoteException, ComunicacionException {
+		return AdministrarMetas.getInstancia().listarTodasLasMetas();
 	}
 }

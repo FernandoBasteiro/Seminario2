@@ -1,10 +1,12 @@
 package controladores;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import dao.MetasDAO;
+import dao.ProcedimientoDAO;
+import dao.UsuarioDAO;
 import dto.MetasDTO;
+import dto.MetasUsrDTO;
 import dto.ProcedimientoDTO;
 import dto.UsuarioDTO;
 import excepciones.ComunicacionException;
@@ -12,9 +14,6 @@ import excepciones.LoggedInException;
 import negocio.Metas;
 import negocio.Procedimiento;
 import negocio.Usuario;
-import controladores.AdministrarUsuarios;
-import dao.MetasDAO;
-import dao.ProcedimientoDAO;
 
 public class AdministrarMetas {
 	private static AdministrarMetas instancia;
@@ -67,6 +66,18 @@ public class AdministrarMetas {
 			meta.guardar();
 		}
 	}
-
+	
+	public ArrayList<MetasUsrDTO> listarTodasLasMetas() throws ComunicacionException {
+		ArrayList<MetasUsrDTO> todo = new ArrayList<MetasUsrDTO>();
+		ArrayList<Metas> metas = MetasDAO.getInstancia().listarTodasLasMetas();
+		for (Metas m : metas) {
+			MetasUsrDTO mu = new MetasUsrDTO();
+			mu.setMeta(m.toDTO());
+			Usuario u = AdministrarUsuarios.getInstancia().buscarUsuario(m.getUser());
+			mu.setUsuario(u.toDTO());
+			todo.add(mu);
+		}
+		return todo;
+	}
 	
 }

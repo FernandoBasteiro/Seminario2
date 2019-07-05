@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dto.MetasDTO;
+import dto.MetasUsrDTO;
 import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
@@ -36,4 +37,6 @@ public interface InterfaceRemota extends Remote {
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws RemoteException, ComunicacionException, LoggedInException;
 
 	public void cerrarMeta(UsuarioDTO usuario, MetasDTO meta) throws RemoteException, ComunicacionException, LoggedInException;
+	
+	public ArrayList<MetasUsrDTO> listarTodasLasMetas() throws RemoteException, ComunicacionException;
 }

@@ -210,7 +210,10 @@ public class Servlet extends HttpServlet {
 						jspPage = "verMetas.jsp";
 					}
 					
-				}
+				} 
+			} else if ("todasLasMetas".equals(action)) {
+				request.setAttribute("ListaMetasDTO", bd.listarTodasLasMetas());
+				jspPage = "private/index.jsp";
 			}
 		} catch (ComunicacionException e) {
 			jspPage = "index.jsp";
