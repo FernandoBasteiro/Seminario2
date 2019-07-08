@@ -2,24 +2,16 @@ package controladores;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.joda.time.LocalDate;
 
 import dao.MetasDAO;
-import dao.ProcedimientoDAO;
 import dao.UsuarioDAO;
 import dto.MetasDTO;
+import dto.MetasUsrDTO;
 import dto.ProcedimientoDTO;
 import dto.RecomendacionesDTO;
 import dto.UsuarioDTO;
-import entities.MetasEntity;
 import excepciones.ComunicacionException;
 import excepciones.LoggedInException;
 import negocio.Metas;
@@ -41,7 +33,7 @@ public class AdministrarProcedimientos {
 	public RecomendacionesDTO listarProcedimiento (UsuarioDTO usuario, MetasDTO meta) throws ComunicacionException, LoggedInException{
 		ArrayList<Procedimiento> ps = new ArrayList<Procedimiento>();
 		ArrayList<Procedimiento> rps = new ArrayList<Procedimiento>();
-		ArrayList<MetasDTO> mDTO = new ArrayList<MetasDTO>();
+		ArrayList<MetasUsrDTO> mDTO = new ArrayList<MetasUsrDTO>();
 		
 		ArrayList<Usuario> uList = new ArrayList<Usuario>();
 		uList = UsuarioDAO.getInstancia().getUsuarioByPerfil(usuario.getVarUbicacion());
@@ -52,7 +44,12 @@ public class AdministrarProcedimientos {
 				mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
 				for(Metas m : mList) {
 					if (m.isCompleta() && meta.getVarAccion().equals(m.getVarAccion())&&meta.getVarNivel().equals(m.getVarNivel())&&meta.getVarSujeto().equals(m.getVarSujeto())) {
-						mDTO.add(m.toDTO());
+						if (u.isActivo()) {
+							MetasUsrDTO muDTO = new MetasUsrDTO();
+							muDTO.setMeta(m.toDTO());
+							muDTO.setUsuario(u.toDTO());
+							mDTO.add(muDTO);
+						}
 						for(Procedimiento p : m.getProcedimientos()) {
 							if (p.getEsPromo()) rps.add(p);
 							else ps.add(p);	
@@ -95,7 +92,9 @@ public class AdministrarProcedimientos {
 	public void crearProcedimiento(UsuarioDTO usuario, MetasDTO meta, ProcedimientoDTO proc) throws LoggedInException, ComunicacionException {
 		if (AdministrarUsuarios.getInstancia().isLoggedIn(usuario)) {
 			Metas m = MetasDAO.getInstancia().getMetaById(meta.getId());
+			Usuario u = AdministrarUsuarios.getInstancia().buscarUsuario(usuario.getLogin());
 			Procedimiento p = new Procedimiento(proc.getDescripcion(), proc.getUrl(), proc.getDuracion());
+			if (! u.isActivo()) p.setEsPromo(true);
 			p.crear();
 			m.getProcedimientos().add(p);
 			m.guardar();

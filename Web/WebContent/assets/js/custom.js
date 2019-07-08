@@ -193,11 +193,11 @@ function nuevoProc(metaId) {
 	}
 	else $("#nombreProcMeta"+metaId).remove("is-invalid");
 	url = $("#urlProcMeta"+metaId).val();
-	if (url == "") {
+	/*if (url == "") {
 		error = true;
 		$("#urlProcMeta"+metaId).addClass("is-invalid");
 	}
-	else $("#urlProcMeta"+metaId).remove("is-invalid");
+	else $("#urlProcMeta"+metaId).remove("is-invalid");*/
 	var duracion = $("#duracionProcMeta"+metaId).val();
 	if (duracion < 1 || duracion > 250) {
 		error = true;

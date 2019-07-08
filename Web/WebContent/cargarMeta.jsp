@@ -17,11 +17,11 @@
 		<div class="card-body m-1 my-2 mb-0">
 			<div class="col-md-12">
 				<div class="form-group row">
-					<label for="accion" class="col-lg-5 my-2">Contanos cual es tu meta:</label>
+					<label for="accion" class="col-lg-5 my-2">Contanos cuál es tu meta:</label>
 					<input type="text" class="form-control col-lg-7" id="meta">
 				</div>
 				<div class="form-group row">
-					<label for="accion" class="col-lg-5 my-2">¿De que tipo es
+					<label for="accion" class="col-lg-5 my-2">¿De qué tipo es
 						tu meta?</label> <select class="custom-select col-lg-7" id="accion">
 						<option value="" disabled selected></option>
 						<%
@@ -37,7 +37,7 @@
 					</select>
 				</div>
 				<div class="form-group row">
-					<label for="sujeto" class="col-lg-5 my-2">¿A que está
+					<label for="sujeto" class="col-lg-5 my-2">¿A qué está
 						asociada?</label> <select class="custom-select col-lg-7" id="sujeto">
 						<option value="" disabled selected></option>
 						<%
@@ -53,7 +53,7 @@
 					</select>
 				</div>
 				<div class="form-group row mb-0">
-					<label for="nivel" class="col-lg-5 my-2">¿Como es tu
+					<label for="nivel" class="col-lg-5 my-2">¿Cómo es tu
 						relación con esta meta?</label> <select
 						class="custom-select col-lg-7" id="nivel">
 						<option value="" disabled selected></option>

@@ -7,7 +7,7 @@ public class RecomendacionesDTO implements Serializable{
 	private ArrayList<ProcedimientoDTO> promoProcs;
 	private Integer sumaPromoProcs;
 	private ArrayList<ProcedimientoDTO> normalProcs;
-	private ArrayList<MetasDTO> metas;
+	private ArrayList<MetasUsrDTO> metas;
 	public ArrayList<ProcedimientoDTO> getPromoProcs() {
 		return promoProcs;
 	}
@@ -26,14 +26,14 @@ public class RecomendacionesDTO implements Serializable{
 	public void setNormalProcs(ArrayList<ProcedimientoDTO> normalProcs) {
 		this.normalProcs = normalProcs;
 	}
-	public ArrayList<MetasDTO> getMetas() {
+	public ArrayList<MetasUsrDTO> getMetas() {
 		return metas;
 	}
-	public void setMetas(ArrayList<MetasDTO> metas) {
+	public void setMetas(ArrayList<MetasUsrDTO> metas) {
 		this.metas = metas;
 	}
 	public RecomendacionesDTO(ArrayList<ProcedimientoDTO> promoProcs, Integer sumaPromoProcs,
-			ArrayList<ProcedimientoDTO> normalProcs, ArrayList<MetasDTO> metas) {
+			ArrayList<ProcedimientoDTO> normalProcs, ArrayList<MetasUsrDTO> metas) {
 		this.promoProcs = promoProcs;
 		this.sumaPromoProcs = sumaPromoProcs;
 		this.normalProcs = normalProcs;

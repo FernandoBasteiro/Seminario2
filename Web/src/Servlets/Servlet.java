@@ -171,6 +171,7 @@ public class Servlet extends HttpServlet {
 							Integer metaId = Integer.valueOf(metaIdStr);
 							MetasDTO meta = new MetasDTO();
 							meta.setId(metaId);
+							if (url.isEmpty()) url = null;
 							ProcedimientoDTO proc = new ProcedimientoDTO(descripcion, url, duracion);
 							bd.crearProcedimiento(uDTO, meta, proc);
 							

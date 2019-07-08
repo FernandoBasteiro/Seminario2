@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="dto.RecomendacionesDTO"%>
 <%@ page import="dto.MetasDTO"%>
+<%@ page import="dto.MetasUsrDTO"%>
 <%@ page import="dto.ProcedimientoDTO"%>
 <%@ page import="dto.UsuarioDTO"%>
 <%@ page import="java.text.DecimalFormat"%>
@@ -109,21 +110,21 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 				</div>
 				<div class="modal-body">
 					<%
-						for (MetasDTO m : rec.getMetas()) {
+						for (MetasUsrDTO m : rec.getMetas()) {
 					%>
 					<div class="card my-1">
 						<div class="card-header" data-toggle="collapse"
-							data-target="#collapse<%=m.getId()%>"
-							aria-controls="collapse<%=m.getId()%>">
-							<%=m.getUser()%>
-							completo su meta:
-							<%=m.getDescripcion()%>
+							data-target="#collapse<%=m.getMeta().getId() %>"
+							aria-controls="collapse<%=m.getMeta().getId()%>">
+							<%=m.getUsuario().getNombre().substring(0, m.getUsuario().getNombre().indexOf(" ")) %>
+							completó su meta:
+							<%=m.getMeta().getDescripcion() %>
 						</div>
 						<div class="card-body collapse multi-collapse"
-							id="collapse<%=m.getId()%>">
+							id="collapse<%=m.getMeta().getId() %>">
 							<%
 								String procsStr = "";
-									for (ProcedimientoDTO p : m.getProcedimientos()) {
+									for (ProcedimientoDTO p : m.getMeta().getProcedimientos()) {
 										if (procsStr != "")
 											procsStr = procsStr + ",";
 										procsStr = procsStr + p.getId();
