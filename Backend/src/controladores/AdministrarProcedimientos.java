@@ -39,7 +39,7 @@ public class AdministrarProcedimientos {
 		uList = UsuarioDAO.getInstancia().getUsuarioByPerfil(usuario.getVarUbicacion());
 		for (Usuario u : uList) {
 			LocalDate fNac = ConversorFechas.convertJavaToJoda(usuario.getVarFechaNac());
-			if (u.getVarFechaNac() != null && Math.abs(fNac.getYear() - u.getVarFechaNac().getYear()) <= 5) {
+			if (u.getVarFechaNac() != null && Math.abs(fNac.getYear() - u.getVarFechaNac().getYear()) <= 10) {
 				ArrayList<Metas> mList = new ArrayList<Metas>();
 				mList = MetasDAO.getInstancia().getListadoMetasByUsuario(u.getLogin());
 				for(Metas m : mList) {
@@ -76,7 +76,7 @@ public class AdministrarProcedimientos {
 		while (i < procs.size()) {
 			for (int j = procs.size() - 1; j > i; j--) {
 				if (procs.get(j).getId() == procs.get(i).getId()) procs.remove(j);
-				else if (procs.get(i).getUrl().equals(procs.get(j).getUrl())) {
+				else if (procs.get(i).getUrl() != null && procs.get(j).getUrl() != null && procs.get(i).getUrl().equals(procs.get(j).getUrl())) {
 					procs.get(i).setCantCalif(procs.get(i).getCantCalif() + procs.get(j).getCantCalif());
 					procs.get(i).setSumaCalif(procs.get(i).getSumaCalif() + procs.get(j).getSumaCalif());
 					procs.remove(j);

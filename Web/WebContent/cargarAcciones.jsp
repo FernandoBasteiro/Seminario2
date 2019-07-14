@@ -45,7 +45,7 @@ else if (rec.getSumaPromoProcs() > usuario.getVarDispHoraria() * 0.8) claseSuma 
 		<div class="card-body ml-2" id="procs">
 			<table class="table table-hover">
 				<%
-					if (rec.getNormalProcs().size() == 0) {
+					if (rec.getNormalProcs().size() + rec.getPromoProcs().size() == 0) {
 				%>
 				<tr colspan=3>
 					<td>Parece que nadie intento hacer esto antes. Crea tu meta vacía y cargale tus experiencias para ayudar al próximo que lo intente.</td>
